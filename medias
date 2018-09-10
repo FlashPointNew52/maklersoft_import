@@ -1,0 +1,1127 @@
+{media_list => {
+
+###### - avito - start
+
+    avito => {
+        msk => {
+            site_url => 'https://www.avito.ru',
+            host => 'www.avito.ru',
+            page_count => 1,
+            pause => 10,
+
+            source_list => [
+                {url => '/moskva/kvartiry/prodam'},
+                {url => '/moskva/komnaty/prodam'},
+                {url => '/moskva/doma_dachi_kottedzhi/prodam'},
+                {url => '/moskva/zemelnye_uchastki/prodam'},
+                {url => '/moskva/kommercheskaya_nedvizhimost/prodam'},
+
+                {url => '/moskva/kvartiry/sdam'},
+                {url => '/moskva/komnaty/sdam'},
+                {url => '/moskva/doma_dachi_kottedzhi/sdam'},
+                {url => '/moskva/zemelnye_uchastki/sdam'},
+                {url => '/moskva/kommercheskaya_nedvizhimost/sdam'},
+            ],
+        },
+        # spb => {
+        #     site_url => 'https://www.avito.ru',
+        #     host => 'www.avito.ru',
+        #     page_count => 1,
+        #     pause => 5,
+        #
+        #     source_list => [
+        #         {url => '/sankt-peterburg/kvartiry/prodam'},
+        #         {url => '/sankt-peterburg/komnaty/prodam'},
+        #         {url => '/sankt-peterburg/doma_dachi_kottedzhi/prodam'},
+        #         {url => '/sankt-peterburg/zemelnye_uchastki/prodam'},
+        #         {url => '/sankt-peterburg/kommercheskaya_nedvizhimost/prodam'},
+        #
+        #         {url => '/sankt-peterburg/kvartiry/sdam'},
+        #         {url => '/sankt-peterburg/komnaty/sdam'},
+        #         {url => '/sankt-peterburg/doma_dachi_kottedzhi/sdam'},
+        #         {url => '/sankt-peterburg/zemelnye_uchastki/sdam'},
+        #         {url => '/sankt-peterburg/kommercheskaya_nedvizhimost/sdam'},
+        #     ],
+        # },
+        # kja => {
+        #     site_url => 'https://www.avito.ru',
+        #     host => 'www.avito.ru',
+        #     page_count => 1,
+        #     pause => 5,
+        #
+        #     source_list => [
+        #         {url => '/krasnoyarsk/kvartiry/prodam'},
+        #         {url => '/krasnoyarsk/komnaty/prodam'},
+        #         {url => '/krasnoyarsk/doma_dachi_kottedzhi/prodam'},
+        #         {url => '/krasnoyarsk/zemelnye_uchastki/prodam'},
+        #         {url => '/krasnoyarsk/kommercheskaya_nedvizhimost/prodam'},
+        #
+        #         {url => '/krasnoyarsk/kvartiry/sdam'},
+        #         {url => '/krasnoyarsk/komnaty/sdam'},
+        #         {url => '/krasnoyarsk/doma_dachi_kottedzhi/sdam'},
+        #         {url => '/krasnoyarsk/zemelnye_uchastki/sdam'},
+        #         {url => '/krasnoyarsk/kommercheskaya_nedvizhimost/sdam'},
+        #     ],
+        # },
+        khv => {
+            site_url => 'https://www.avito.ru',
+            host => 'www.avito.ru',
+            page_count => 1,
+            pause => 10,
+
+            source_list => [
+                {url => '/habarovsk/kvartiry/prodam'},
+                {url => '/habarovsk/komnaty/prodam'},
+                {url => '/habarovsk/doma_dachi_kottedzhi/prodam'},
+                {url => '/habarovsk/zemelnye_uchastki/prodam'},
+                {url => '/habarovsk/kommercheskaya_nedvizhimost/prodam'},
+
+                {url => '/habarovsk/kvartiry/sdam'},
+                {url => '/habarovsk/komnaty/sdam'},
+                {url => '/habarovsk/doma_dachi_kottedzhi/sdam'},
+                {url => '/habarovsk/zemelnye_uchastki/sdam'},
+                {url => '/habarovsk/kommercheskaya_nedvizhimost/sdam'},
+            ],
+        },
+        vld => {
+            site_url => 'https://www.avito.ru',
+            host => 'www.avito.ru',
+            page_count => 1,
+            pause => 10,
+
+            source_list => [
+                {url => '/vladivostok/kvartiry/prodam'},
+                {url => '/vladivostok/komnaty/prodam'},
+                {url => '/vladivostok/doma_dachi_kottedzhi/prodam'},
+                {url => '/vladivostok/zemelnye_uchastki/prodam'},
+                {url => '/vladivostok/kommercheskaya_nedvizhimost/prodam'},
+
+                {url => '/vladivostok/kvartiry/sdam'},
+                {url => '/vladivostok/komnaty/sdam'},
+                {url => '/vladivostok/doma_dachi_kottedzhi/sdam'},
+                {url => '/vladivostok/zemelnye_uchastki/sdam'},
+                {url => '/vladivostok/kommercheskaya_nedvizhimost/sdam'},
+            ],
+        },
+        kms => {
+            site_url => 'https://www.avito.ru',
+            host => 'www.avito.ru',
+            page_count => 1,
+            pause => 10,
+
+            source_list => [
+                {url => '/komsomolsk-na-amure/kvartiry/prodam'},
+                {url => '/komsomolsk-na-amure/komnaty/prodam'},
+                {url => '/komsomolsk-na-amure/doma_dachi_kottedzhi/prodam'},
+                {url => '/komsomolsk-na-amure/zemelnye_uchastki/prodam'},
+                {url => '/komsomolsk-na-amure/kommercheskaya_nedvizhimost/prodam'},
+
+                {url => '/komsomolsk-na-amure/kvartiry/sdam'},
+                {url => '/komsomolsk-na-amure/komnaty/sdam'},
+                {url => '/komsomolsk-na-amure/doma_dachi_kottedzhi/sdam'},
+                {url => '/komsomolsk-na-amure/zemelnye_uchastki/sdam'},
+                {url => '/komsomolsk-na-amure/kommercheskaya_nedvizhimost/sdam'},
+            ],
+        },
+        nahodka => {
+            site_url => 'https://www.avito.ru',
+            host => 'www.avito.ru',
+            page_count => 1,
+            pause_item => 10,
+            pause => 10,
+            source_list => [
+                {url => '/nahodka/kvartiry/prodam'},
+                {url => '/nahodka/komnaty/prodam'},
+                {url => '/nahodka/doma_dachi_kottedzhi/prodam'},
+                {url => '/nahodka/zemelnye_uchastki/prodam'},
+                {url => '/nahodka/kommercheskaya_nedvizhimost/prodam'},
+
+                {url => '/nahodka/kvartiry/sdam'},
+                {url => '/nahodka/komnaty/sdam'},
+                {url => '/nahodka/doma_dachi_kottedzhi/sdam'},
+                {url => '/nahodka/zemelnye_uchastki/sdam'},
+                {url => '/nahodka/kommercheskaya_nedvizhimost/sdam'},
+            ],
+        }
+    },
+###### - avito - end
+
+###### - irr - start
+    irr => {
+        msk => {
+            site_url => 'http://irr.ru',
+            host => 'irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+0300',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        },
+        spb => {
+            site_url => 'http://saint-petersburg.irr.ru',
+            host => 'saint-petersburg.irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+0300',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        },
+        kja => {
+            site_url => 'http://krasnoyarsk.irr.ru',
+            host => 'krasnoyarsk.irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+0600',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        },
+        khv => {
+            site_url => 'http://khabarovsk.irr.ru',
+            host => 'khabarovsk.irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        },
+        vld => {
+            site_url => 'http://vladivostok.irr.ru',
+            host => 'vladivostok.irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        },
+        kms => {
+            site_url => 'http://komsomolsk.irr.ru',
+            host => 'komsomolsk.irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        },
+        nahodka => {
+            site_url => 'http://nahodka.irr.ru',
+            host => 'nahodka.irr.ru',
+            page_count => 5,
+            pause => 5,
+            offer_count_limit => 3,
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/real-estate/rooms-sale/', type => ''},
+                {url => '/real-estate/apartments-sale/'},
+                {url => '/real-estate/out-of-town/houses/'},
+                {url => '/real-estate/commercial-sale/offices/'},
+                {url => '/real-estate/commercial-sale/misc/'},
+                {url => '/real-estate/commercial-sale/production-warehouses/'},
+                {url => '/real-estate/commercial-sale/retail/'},
+                {url => '/real-estate/commercial-sale/eating/'},
+                {url => '/real-estate/commercial-sale/houses/'},
+                {url => '/real-estate/garage/'},
+
+                {url => '/real-estate/rooms-rent/'},
+                {url => '/real-estate/rent/'},
+                {url => '/real-estate/out-of-town-rent/'},
+                {url => '/real-estate/commercial/offices/'},
+                {url => '/real-estate/commercial/misc/'},
+                {url => '/real-estate/commercial/production-warehouses/'},
+                {url => '/real-estate/commercial/retail/'},
+                {url => '/real-estate/commercial/eating/'},
+                {url => '/real-estate/commercial/houses/'},
+                {url => '/real-estate/garage-rent/'},
+            ]
+        }
+    },
+###### - irrru - end
+
+# ###### - farpost - start
+    farpost => {
+        khv => {
+            site_url => 'http://www.farpost.ru',
+            host => 'www.farpost.ru',
+            referer => 'http://www.farpost.ru/khabarovsk/',
+            page_count => 5,
+            pause => 10,
+            locality => 'Хабаровск',
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/khabarovsk/realty/sell_flats/'},
+                {url => '/khabarovsk/realty/exchange/'},
+                {url => '/khabarovsk/realty/sell_houses/'},
+                {url => '/khabarovsk/realty/change_houses/'},
+                {url => '/khabarovsk/realty/land/'},
+                {url => '/khabarovsk/realty/dacha/'},
+                {url => '/khabarovsk/realty/sale_garage/'},
+                {url => '/khabarovsk/realty/sell_business_realty/'},
+
+                {url => '/khabarovsk/realty/rent_flats/'},
+                {url => '/khabarovsk/realty/rent_garage/'},
+                {url => '/khabarovsk/realty/rent-apartment/'},
+                {url => '/khabarovsk/realty/rent_houses/'},
+                {url => '/khabarovsk/realty/land-rent/'},
+                {url => '/khabarovsk/realty/rent_business_realty/'},
+            ],
+        },
+        vld => {
+            site_url => 'http://www.farpost.ru',
+            host => 'www.farpost.ru',
+            referer => 'http://www.farpost.ru/vladivostok/',
+            page_count => 5,
+            pause => 10,
+            locality => 'Владивосток',
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/vladivostok/realty/sell_flats/'},
+                {url => '/vladivostok/realty/exchange/'},
+                {url => '/vladivostok/realty/sell_houses/'},
+                {url => '/vladivostok/realty/change_houses/'},
+                {url => '/vladivostok/realty/land/'},
+                {url => '/vladivostok/realty/dacha/'},
+                {url => '/vladivostok/realty/sale_garage/'},
+                {url => '/vladivostok/realty/sell_business_realty/'},
+
+                {url => '/vladivostok/realty/rent_flats/'},
+                {url => '/vladivostok/realty/rent_garage/'},
+                {url => '/vladivostok/realty/rent-apartment/'},
+                {url => '/vladivostok/realty/rent_houses/'},
+                {url => '/vladivostok/realty/land-rent/'},
+                {url => '/vladivostok/realty/rent_business_realty/'},
+            ],
+        },
+        kms => {
+            site_url => 'http://www.farpost.ru',
+            host => 'www.farpost.ru',
+            referer => 'http://www.farpost.ru/komsomolsk-na-amure/',
+            page_count => 5,
+            pause => 10,
+            locality => 'Комсомольск-на-Амуре',
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/komsomolsk-na-amure/realty/sell_flats/'},
+                {url => '/komsomolsk-na-amure/realty/exchange/'},
+                {url => '/komsomolsk-na-amure/realty/sell_houses/'},
+                {url => '/komsomolsk-na-amure/realty/change_houses/'},
+                {url => '/komsomolsk-na-amure/realty/land/'},
+                {url => '/komsomolsk-na-amure/realty/dacha/'},
+                {url => '/komsomolsk-na-amure/realty/sale_garage/'},
+                {url => '/komsomolsk-na-amure/realty/sell_business_realty/'},
+
+                {url => '/komsomolsk-na-amure/realty/rent_flats/'},
+                {url => '/komsomolsk-na-amure/realty/rent_garage/'},
+                {url => '/komsomolsk-na-amure/realty/rent-apartment/'},
+                {url => '/komsomolsk-na-amure/realty/rent_houses/'},
+                {url => '/komsomolsk-na-amure/realty/land-rent/'},
+                {url => '/komsomolsk-na-amure/realty/rent_business_realty/'},
+            ],
+        },
+        nahodka => {
+            site_url => 'http://www.farpost.ru',
+            host => 'www.farpost.ru',
+            referer => 'http://www.farpost.ru/nakhodka/',
+            page_count => 5,
+            pause => 5,
+            locality => 'Находка',
+            timezone => '+1000',
+
+            source_list => [
+                {url => '/nakhodka/realty/sell_flats/'},
+                {url => '/nakhodka/realty/change_flats/'},
+                {url => '/nakhodka/realty/sell_houses/'},
+                {url => '/nakhodka/realty/change_houses/'},
+                {url => '/nakhodka/realty/land/'},
+                {url => '/nakhodka/realty/dacha/'},
+                {url => '/nakhodka/realty/garage/'},
+                {url => '/nakhodka/realty/sell_business_realty/'},
+
+                {url => '/nakhodka/realty/rent_flats/'},
+                {url => '/nakhodka/realty/rent-apartment/'},
+                {url => '/nakhodka/realty/rent_houses/'},
+                {url => '/nakhodka/realty/land-rent/'},
+                {url => '/nakhodka/realty/rent_business_realty/'},
+            ],
+        }
+     },
+# ###### - farpost - end
+#
+###### - CIAN - start
+    cian => {
+        msk => {
+            site_url => 'https://cian.ru',
+            host => 'cian.ru',
+            pause => 10,
+            page_count => 5,
+            follow_redirects => 1,
+
+            source_list => [
+                {url => '/kupit-1-komnatnuyu-kvartiru/'},
+                {url => '/kupit-2-komnatnuyu-kvartiru/'},
+                {url => '/kupit-3-komnatnuyu-kvartiru/'},
+                {url => '/kupit-kvartiru-svobodnoy-planirovki/'},
+                {url => '/kupit-kvartiru-studiu//'},
+                {url => '/kupit-komnatu/'},
+                {url => '/kupit-dom-moskovskaya-oblast/'},
+                {url => '/kupit-taunhaus-moskovskaya-oblast/'},
+                {url => '/kupit-zemelniy-uchastok-moskovskaya-oblast/'},
+
+                {url => '/snyat-1-komnatnuyu-kvartiru/'},
+                {url => '/snyat-2-komnatnuyu-kvartiru/'},
+                {url => '/snyat-3-komnatnuyu-kvartiru/'},
+                {url => '/snyat-kvartiru-studiu/'},
+                {url => '/snyat-komnatu/'},
+                {url => '/snyat-dom-moskovskaya-oblast/'},
+
+                {url => '/snyat-kvartiru-posutochno/'},
+                {url => '/snyat-dom-posutochno-moskovskaya-oblast/'},
+                {url => '/snyat-komnatu-posutochno/'},
+
+                {url => '/kupit-ofis/'},
+                {url => '/snyat-ofis/'},
+
+                {url => '/kupit-sklad/'},
+                {url => '/snyat-sklad/'},
+
+                {url => '/kupit-torgovuyu-ploshad/'},
+                {url => '/snyat-torgovuyu-ploshad/'},
+
+                {url => '/kupit-pomeshenie-pod-proizvodstvo/'},
+                {url => '/snyat-pomeshenie-pod-proizvodstvo/'},
+
+                {url => '/kupit-zdanie/'},
+                {url => '/snyat-zdanie/'},
+
+                {url => '/kupit-pomeshenie-svobodnogo-naznachenija/'},
+                {url => '/snyat-pomeshenie-svobodnogo-naznachenija/'},
+
+                {url => '/kupit-garazh/'},
+                {url => '/snyat-garazh/'}
+            ]
+        },
+        spb => {
+            site_url => 'https://spb.cian.ru',
+            host => 'spb.cian.ru',
+            pause => 10,
+            page_count => 5,
+            follow_redirects => 1,
+
+            source_list => [
+                {url => '/kupit-1-komnatnuyu-kvartiru/'},
+                {url => '/kupit-2-komnatnuyu-kvartiru/'},
+                {url => '/kupit-3-komnatnuyu-kvartiru/'},
+                {url => '/kupit-kvartiru-svobodnoy-planirovki/'},
+                {url => '/kupit-kvartiru-studiu//'},
+                {url => '/kupit-komnatu/'},
+                {url => '/kupit-dom-moskovskaya-oblast/'},
+                {url => '/kupit-taunhaus-moskovskaya-oblast/'},
+                {url => '/kupit-zemelniy-uchastok-moskovskaya-oblast/'},
+
+                {url => '/snyat-1-komnatnuyu-kvartiru/'},
+                {url => '/snyat-2-komnatnuyu-kvartiru/'},
+                {url => '/snyat-3-komnatnuyu-kvartiru/'},
+                {url => '/snyat-kvartiru-studiu/'},
+                {url => '/snyat-komnatu/'},
+                {url => '/snyat-dom-moskovskaya-oblast/'},
+
+                {url => '/snyat-kvartiru-posutochno/'},
+                {url => '/snyat-dom-posutochno-moskovskaya-oblast/'},
+                {url => '/snyat-komnatu-posutochno/'},
+
+                {url => '/kupit-ofis/'},
+                {url => '/snyat-ofis/'},
+
+                {url => '/kupit-sklad/'},
+                {url => '/snyat-sklad/'},
+
+                {url => '/kupit-torgovuyu-ploshad/'},
+                {url => '/snyat-torgovuyu-ploshad/'},
+
+                {url => '/kupit-pomeshenie-pod-proizvodstvo/'},
+                {url => '/snyat-pomeshenie-pod-proizvodstvo/'},
+
+                {url => '/kupit-zdanie/'},
+                {url => '/snyat-zdanie/'},
+
+                {url => '/kupit-pomeshenie-svobodnogo-naznachenija/'},
+                {url => '/snyat-pomeshenie-svobodnogo-naznachenija/'},
+
+                {url => '/kupit-garazh/'},
+                {url => '/snyat-garazh/'}
+            ]
+        },
+        kja => {
+            site_url => 'http://krasnoyarsk.cian.ru',
+            host => 'krasnoyarsk.cian.ru',
+            pause => 10,
+            page_count => 5,
+            follow_redirects => 1,
+
+            source_list => [
+                {url => '/kupit-1-komnatnuyu-kvartiru/'},
+                {url => '/kupit-2-komnatnuyu-kvartiru/'},
+                {url => '/kupit-3-komnatnuyu-kvartiru/'},
+                {url => '/kupit-kvartiru-svobodnoy-planirovki/'},
+                {url => '/kupit-kvartiru-studiu//'},
+                {url => '/kupit-komnatu/'},
+                {url => '/kupit-dom-moskovskaya-oblast/'},
+                {url => '/kupit-taunhaus-moskovskaya-oblast/'},
+                {url => '/kupit-zemelniy-uchastok-moskovskaya-oblast/'},
+
+                {url => '/snyat-1-komnatnuyu-kvartiru/'},
+                {url => '/snyat-2-komnatnuyu-kvartiru/'},
+                {url => '/snyat-3-komnatnuyu-kvartiru/'},
+                {url => '/snyat-kvartiru-studiu/'},
+                {url => '/snyat-komnatu/'},
+                {url => '/snyat-dom-moskovskaya-oblast/'},
+
+                {url => '/snyat-kvartiru-posutochno/'},
+                {url => '/snyat-dom-posutochno-moskovskaya-oblast/'},
+                {url => '/snyat-komnatu-posutochno/'},
+
+                {url => '/kupit-ofis/'},
+                {url => '/snyat-ofis/'},
+
+                {url => '/kupit-sklad/'},
+                {url => '/snyat-sklad/'},
+
+                {url => '/kupit-torgovuyu-ploshad/'},
+                {url => '/snyat-torgovuyu-ploshad/'},
+
+                {url => '/kupit-pomeshenie-pod-proizvodstvo/'},
+                {url => '/snyat-pomeshenie-pod-proizvodstvo/'},
+
+                {url => '/kupit-zdanie/'},
+                {url => '/snyat-zdanie/'},
+
+                {url => '/kupit-pomeshenie-svobodnogo-naznachenija/'},
+                {url => '/snyat-pomeshenie-svobodnogo-naznachenija/'},
+
+                {url => '/kupit-garazh/'},
+                {url => '/snyat-garazh/'}
+            ]
+        }
+    },
+###### - CIAN - end
+#
+# ###### - BN - start
+#     bn => {
+#         msk => {
+#             site_url => 'http://www.moskva.bn.ru',
+#             host => 'www.moskva.bn.ru',
+#             page_count => 3,
+#             pause => 5,
+#
+#             source_list => [
+#                 {url => '/sale/city/flats/'},
+#                 {url => '/sale/city/rooms/'},
+#                 {url => '/sale/city/elite/'},
+#                 {url => '/sale/city/newflats/'},
+#                 {url => '/sale/city/houses/'},
+#                 {url => '/sale/city/cottages/'},
+#                 {url => '/sale/city/lands/'},
+#                 {url => '/sale/commerce/offices/'},
+#                 {url => '/sale/commerce/comm_new/'},
+#                 {url => '/sale/commerce/service/'},
+#                 {url => '/sale/commerce/different/'},
+#                 {url => '/sale/commerce/freestanding/'},
+#                 {url => '/sale/commerce/storage/'},
+#                 {url => '/sale/commerce/comm_lands/'},
+#
+#                 {url => '/rent/city/flats/'},
+#                 {url => '/rent/city/rooms/'},
+#                 {url => '/rent/city/elite/'},
+#                 {url => '/rent/city/newflats/'},
+#                 {url => '/rent/city/houses/'},
+#                 {url => '/rent/city/cottages/'},
+#                 {url => '/rent/city/lands/'},
+#                 {url => '/rent/commerce/offices/'},
+#                 {url => '/rent/commerce/comm_new/'},
+#                 {url => '/rent/commerce/service/'},
+#                 {url => '/rent/commerce/different/'},
+#                 {url => '/rent/commerce/freestanding/'},
+#                 {url => '/rent/commerce/storage/'},
+#                 {url => '/rent/commerce/comm_lands/'},
+#             ]
+#         },
+#         kja => {
+#             site_url => 'http://www.24.bn.ru',
+#             host => 'www.24.bn.ru',
+#             page_count => 3,
+#             pause => 5,
+#
+#             source_list => [
+#                 {url => '/sale/city/flats/'},
+#                 {url => '/sale/city/rooms/'},
+#                 {url => '/sale/city/elite/'},
+#                 {url => '/sale/city/newflats/'},
+#                 {url => '/sale/city/houses/'},
+#                 {url => '/sale/city/cottages/'},
+#                 {url => '/sale/city/lands/'},
+#                 {url => '/sale/commerce/offices/'},
+#                 {url => '/sale/commerce/comm_new/'},
+#                 {url => '/sale/commerce/service/'},
+#                 {url => '/sale/commerce/different/'},
+#                 {url => '/sale/commerce/freestanding/'},
+#                 {url => '/sale/commerce/storage/'},
+#                 {url => '/sale/commerce/comm_lands/'},
+#
+#                 {url => '/rent/city/flats/'},
+#                 {url => '/rent/city/rooms/'},
+#                 {url => '/rent/city/elite/'},
+#                 {url => '/rent/city/newflats/'},
+#                 {url => '/rent/city/houses/'},
+#                 {url => '/rent/city/cottages/'},
+#                 {url => '/rent/city/lands/'},
+#                 {url => '/rent/commerce/offices/'},
+#                 {url => '/rent/commerce/comm_new/'},
+#                 {url => '/rent/commerce/service/'},
+#                 {url => '/rent/commerce/different/'},
+#                 {url => '/rent/commerce/freestanding/'},
+#                 {url => '/rent/commerce/storage/'},
+#                 {url => '/rent/commerce/comm_lands/'},
+#             ]
+#         }
+#     },
+# ###### - BN - end
+#
+# ###### - BNspb - start
+#     bnspb => {
+#         spb => {
+#             site_url => 'http://www.bn.ru',
+#             host => 'www.bn.ru',
+#             pause => 5,
+#             page_count => 1,
+#
+#             source_list => [
+#               {url => '/zap_fl.phtml'},
+#               {url => '/zap_rm_w.phtml'},
+#               {url => '/zap_kmz.phtml'},
+#
+#               {url => '/zap_ct.phtml'},
+#
+#               {url => '/zap_ar.phtml'},
+#               {url => '/zap_ars.phtml'},
+#             ]
+#         }
+#     },
+# ###### - BNspb - end
+#
+# ###### - MKV - start
+#     mkv => {
+#         msk => {
+#             site_url => 'mirkvartir.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 5,
+#             source_list => [
+#                 {url => 'http://www.mirkvartir.ru/Москва/'},
+#                 {url => 'http://www.mirkvartir.ru/Москва/Комнаты/'},
+#                 {url => 'http://dom.mirkvartir.ru/Москва/'},
+#                 {url => 'http://dom.mirkvartir.ru/Москва/Таунхаусы/'},
+#                 {url => 'http://dom.mirkvartir.ru/Москва/Участки/'},
+#                 {url => 'http://cre.mirkvartir.ru/Москва/Офисы/'},
+#                 {url => 'http://cre.mirkvartir.ru/Москва/Помещения+свободного+назначения/'},
+#                 {url => 'http://cre.mirkvartir.ru/Москва/Склады/'},
+#                 {url => 'http://cre.mirkvartir.ru/Москва/Торговые+помещения/'},
+#                 {url => 'http://zem.mirkvartir.ru/Москва/'},
+#
+#                 {url => 'http://arenda.mirkvartir.ru/Москва/'},
+#                 {url => 'http://arenda.mirkvartir.ru/Москва/Посуточно'},
+#                 {url => 'http://arenda.mirkvartir.ru/Москва/Комнаты/'},
+#
+#                 {url => 'http://arendadoma.mirkvartir.ru/Москва/'},
+#                 {url => 'http://arendadoma.mirkvartir.ru/Москва/Таунхаусы/'},
+#
+#                 {url => 'http://arendacre.mirkvartir.ru/Москва/Офисы/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Москва/Помещения+свободного+назначения/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Москва/Склады/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Москва/Торговые+помещения/'},
+#
+#                 {url => 'http://new.mirkvartir.ru/Москва/'},
+#             ]
+#         },
+#         spb => {
+#             site_url => 'mirkvartir.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 5,
+#             source_list => [
+#                 {url => 'http://www.mirkvartir.ru/Санкт-Петербург/'},
+#                 {url => 'http://www.mirkvartir.ru/Санкт-Петербург/Комнаты/'},
+#                 {url => 'http://dom.mirkvartir.ru/Санкт-Петербург/'},
+#                 {url => 'http://dom.mirkvartir.ru/Санкт-Петербург/Таунхаусы/'},
+#                 {url => 'http://dom.mirkvartir.ru/Санкт-Петербург/Участки/'},
+#                 {url => 'http://cre.mirkvartir.ru/Санкт-Петербург/Офисы/'},
+#                 {url => 'http://cre.mirkvartir.ru/Санкт-Петербург/Помещения+свободного+назначения/'},
+#                 {url => 'http://cre.mirkvartir.ru/Санкт-Петербург/Склады/'},
+#                 {url => 'http://cre.mirkvartir.ru/Санкт-Петербург/Торговые+помещения/'},
+#                 {url => 'http://zem.mirkvartir.ru/Санкт-Петербург/'},
+#
+#                 {url => 'http://arenda.mirkvartir.ru/Санкт-Петербург/'},
+#                 {url => 'http://arenda.mirkvartir.ru/Санкт-Петербург/Посуточно'},
+#                 {url => 'http://arenda.mirkvartir.ru/Санкт-Петербург/Комнаты/'},
+#
+#                 {url => 'http://arendadoma.mirkvartir.ru/Санкт-Петербург/'},
+#                 {url => 'http://arendadoma.mirkvartir.ru/Санкт-Петербург/Таунхаусы/'},
+#
+#                 {url => 'http://arendacre.mirkvartir.ru/Санкт-Петербург/Офисы/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Санкт-Петербург/Помещения+свободного+назначения/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Санкт-Петербург/Склады/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Санкт-Петербург/Торговые+помещения/'},
+#
+#                 {url => 'http://new.mirkvartir.ru/Санкт-Петербург/'},
+#             ]
+#         },
+#         kja => {
+#             site_url => 'mirkvartir.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 5,
+#             source_list => [
+#                 {url => 'http://www.mirkvartir.ru/Красноярский+край/Красноярск/'},
+#                 {url => 'http://www.mirkvartir.ru/Красноярский+край/Красноярск/Комнаты/'},
+#                 {url => 'http://dom.mirkvartir.ru/Красноярский+край/Красноярск/'},
+#                 {url => 'http://dom.mirkvartir.ru/Красноярский+край/Красноярск/Таунхаусы/'},
+#                 {url => 'http://dom.mirkvartir.ru/Красноярский+край/Красноярск/Участки/'},
+#                 {url => 'http://cre.mirkvartir.ru/Красноярский+край/Красноярск/Офисы/'},
+#                 {url => 'http://cre.mirkvartir.ru/Красноярский+край/Красноярск/Помещения+свободного+назначения/'},
+#                 {url => 'http://cre.mirkvartir.ru/Красноярский+край/Красноярск/Склады/'},
+#                 {url => 'http://cre.mirkvartir.ru/Красноярский+край/Красноярск/Торговые+помещения/'},
+#                 {url => 'http://zem.mirkvartir.ru/Красноярский+край/Красноярск/'},
+#
+#                 {url => 'http://arenda.mirkvartir.ru/Красноярский+край/Красноярск/'},
+#                 {url => 'http://arenda.mirkvartir.ru/Красноярский+край/Красноярск/Посуточно'},
+#                 {url => 'http://arenda.mirkvartir.ru/Красноярский+край/Красноярск/Комнаты/'},
+#
+#                 {url => 'http://arendadoma.mirkvartir.ru/Красноярский+край/Красноярск/'},
+#                 {url => 'http://arendadoma.mirkvartir.ru/Красноярский+край/Красноярск/Таунхаусы/'},
+#
+#                 {url => 'http://arendacre.mirkvartir.ru/Красноярский+край/Красноярск/Офисы/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Красноярский+край/Красноярск/Помещения+свободного+назначения/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Красноярский+край/Красноярск/Склады/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Красноярский+край/Красноярск/Торговые+помещения/'},
+#
+#                 {url => 'http://new.mirkvartir.ru/Москва/'},
+#             ]
+#         },
+#         kms => {
+#             site_url => 'mirkvartir.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 5,
+#             source_list => [
+#                 {url => 'http://www.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/'},
+#                 {url => 'http://www.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Комнаты/'},
+#                 {url => 'http://dom.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/'},
+#                 {url => 'http://dom.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Таунхаусы/'},
+#                 {url => 'http://dom.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Участки/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Офисы/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Помещения+свободного+назначения/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Склады/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Торговые+помещения/'},
+#                 {url => 'http://zem.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/'},
+#
+#                 {url => 'http://arenda.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/'},
+#                 {url => 'http://arenda.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Посуточно'},
+#                 {url => 'http://arenda.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Комнаты/'},
+#
+#                 {url => 'http://arendadoma.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/'},
+#                 {url => 'http://arendadoma.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Таунхаусы/'},
+#
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Офисы/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Помещения+свободного+назначения/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Склады/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/Торговые+помещения/'},
+#
+#                 {url => 'http://new.mirkvartir.ru/Хабаровский+край/Комсомольск-на-Амуре/'},
+#             ]
+#         },
+#         khv => {
+#             site_url => 'mirkvartir.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 5,
+#             source_list => [
+#                 {url => 'http://www.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#                 {url => 'http://www.mirkvartir.ru/Хабаровский+край/Хабаровск/Комнаты/'},
+#                 {url => 'http://dom.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#                 {url => 'http://dom.mirkvartir.ru/Хабаровский+край/Хабаровск/Таунхаусы/'},
+#                 {url => 'http://dom.mirkvartir.ru/Хабаровский+край/Хабаровск/Участки/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Хабаровск/Офисы/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Хабаровск/Помещения+свободного+назначения/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Хабаровск/Склады/'},
+#                 {url => 'http://cre.mirkvartir.ru/Хабаровский+край/Хабаровск/Торговые+помещения/'},
+#                 {url => 'http://zem.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#
+#                 {url => 'http://arenda.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#                 {url => 'http://arenda.mirkvartir.ru/Хабаровский+край/Хабаровск/Посуточно'},
+#                 {url => 'http://arenda.mirkvartir.ru/Хабаровский+край/Хабаровск/Комнаты/'},
+#
+#                 {url => 'http://arendadoma.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#                 {url => 'http://arendadoma.mirkvartir.ru/Хабаровский+край/Хабаровск/Таунхаусы/'},
+#
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Хабаровск/Офисы/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Хабаровск/Помещения+свободного+назначения/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Хабаровск/Склады/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Хабаровский+край/Хабаровск/Торговые+помещения/'},
+#
+#                 {url => 'http://new.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#             ]
+#         },
+#         vld => {
+#             site_url => 'mirkvartir.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 5,
+#             source_list => [
+#                 {url => 'http://www.mirkvartir.ru/Приморский+край/Владивосток/'},
+#                 {url => 'http://www.mirkvartir.ru/Приморский+край/Владивосток/Комнаты/'},
+#                 {url => 'http://dom.mirkvartir.ru/Приморский+край/Владивосток/'},
+#                 {url => 'http://dom.mirkvartir.ru/Приморский+край/Владивосток/Таунхаусы/'},
+#                 {url => 'http://dom.mirkvartir.ru/Приморский+край/Владивосток/Участки/'},
+#                 {url => 'http://cre.mirkvartir.ru/Приморский+край/Владивосток/Офисы/'},
+#                 {url => 'http://cre.mirkvartir.ru/Приморский+край/Владивосток/Помещения+свободного+назначения/'},
+#                 {url => 'http://cre.mirkvartir.ru/Приморский+край/Владивосток/Склады/'},
+#                 {url => 'http://cre.mirkvartir.ru/Приморский+край/Владивосток/Торговые+помещения/'},
+#                 {url => 'http://zem.mirkvartir.ru/Приморский+край/Владивосток/'},
+#
+#                 {url => 'http://arenda.mirkvartir.ru/Приморский+край/Владивосток/'},
+#                 {url => 'http://arenda.mirkvartir.ru/Приморский+край/Владивосток/Посуточно'},
+#                 {url => 'http://arenda.mirkvartir.ru/Приморский+край/Владивосток/Комнаты/'},
+#
+#                 {url => 'http://arendadoma.mirkvartir.ru/Приморский+край/Владивосток/'},
+#                 {url => 'http://arendadoma.mirkvartir.ru/Приморский+край/Владивосток/Таунхаусы/'},
+#
+#                 {url => 'http://arendacre.mirkvartir.ru/Приморский+край/Владивосток/Офисы/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Приморский+край/Владивосток/Помещения+свободного+назначения/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Приморский+край/Владивосток/Склады/'},
+#                 {url => 'http://arendacre.mirkvartir.ru/Приморский+край/Владивосток/Торговые+помещения/'},
+#
+#                 {url => 'http://new.mirkvartir.ru/Хабаровский+край/Хабаровск/'},
+#             ]
+#         }
+#     },
+# ###### - MKV - end
+#
+# ###### - Barahlo - start
+#     barahlo => {
+#         msk => {
+#             pause => 5,
+#             site_url => 'http://msk.barahla.net',
+#             host => '',
+#             page_count => 5,
+#
+#             source_list => [
+#                 {url => '/realty/217/1/'},
+#                 {url => '/realty/208/1/'},
+#                 {url => '/realty/216/1/'},
+#                 {url => '/realty/245/1/'},
+#                 {url => '/realty/218/1/'},
+#
+#                 {url => '/realty/214/1/'},
+#                 {url => '/realty/514/1/'},
+#                 {url => '/realty/210/1/'},
+#                 {url => '/realty/213/1/'},
+#                 {url => '/realty/274/1/'},
+#
+#                 {url => '/realty/219/1/'},
+#                 {url => '/realty/286/1/'},
+#                 {url => '/realty/219/1/'},
+#             ],
+#         },
+#         spb => {
+#             pause => 5,
+#             site_url => 'http://spb.barahla.net',
+#             host => '',
+#             page_count => 5,
+#
+#             source_list => [
+#                 {url => '/realty/217/1/'},
+#                 {url => '/realty/208/1/'},
+#                 {url => '/realty/216/1/'},
+#                 {url => '/realty/245/1/'},
+#                 {url => '/realty/218/1/'},
+#
+#                 {url => '/realty/214/1/'},
+#                 {url => '/realty/514/1/'},
+#                 {url => '/realty/210/1/'},
+#                 {url => '/realty/213/1/'},
+#                 {url => '/realty/274/1/'},
+#
+#                 {url => '/realty/219/1/'},
+#                 {url => '/realty/286/1/'},
+#                 {url => '/realty/219/1/'},
+#             ],
+#         },
+#         kja => {
+#             pause => 5,
+#             site_url => 'http://krasnoyarsk.barahla.net',
+#             host => '',
+#             page_count => 5,
+#
+#             source_list => [
+#                 {url => '/realty/217/1/'},
+#                 {url => '/realty/208/1/'},
+#                 {url => '/realty/216/1/'},
+#                 {url => '/realty/245/1/'},
+#                 {url => '/realty/218/1/'},
+#
+#                 {url => '/realty/214/1/'},
+#                 {url => '/realty/514/1/'},
+#                 {url => '/realty/210/1/'},
+#                 {url => '/realty/213/1/'},
+#                 {url => '/realty/274/1/'},
+#
+#                 {url => '/realty/219/1/'},
+#                 {url => '/realty/286/1/'},
+#                 {url => '/realty/219/1/'},
+#             ],
+#         },
+#         khv => {
+#             pause => 5,
+#             site_url => 'http://habarovsk.barahla.net',
+#             host => '',
+#             page_count => 5,
+#
+#             source_list => [
+#                 {url => '/realty/217/1/'},
+#                 {url => '/realty/208/1/'},
+#                 {url => '/realty/216/1/'},
+#                 {url => '/realty/245/1/'},
+#                 {url => '/realty/218/1/'},
+#
+#                 {url => '/realty/214/1/'},
+#                 {url => '/realty/514/1/'},
+#                 {url => '/realty/210/1/'},
+#                 {url => '/realty/213/1/'},
+#                 {url => '/realty/274/1/'},
+#
+#                 {url => '/realty/219/1/'},
+#                 {url => '/realty/286/1/'},
+#                 {url => '/realty/219/1/'},
+#             ],
+#         },
+#         vld => {
+#             pause => 5,
+#             site_url => 'http://vl.barahla.net',
+#             host => '',
+#             page_count => 5,
+#
+#             source_list => [
+#                 {url => '/realty/217/1/'},
+#                 {url => '/realty/208/1/'},
+#                 {url => '/realty/216/1/'},
+#                 {url => '/realty/245/1/'},
+#                 {url => '/realty/218/1/'},
+#
+#                 {url => '/realty/214/1/'},
+#                 {url => '/realty/514/1/'},
+#                 {url => '/realty/210/1/'},
+#                 {url => '/realty/213/1/'},
+#                 {url => '/realty/274/1/'},
+#
+#                 {url => '/realty/219/1/'},
+#                 {url => '/realty/286/1/'},
+#                 {url => '/realty/219/1/'},
+#             ],
+#         },
+#     },
+# ###### - Barahlo - end
+#
+###### - Present_site - begin
+     present_site => {
+        khv => {
+            pause => 10,
+            site_url => 'http://present-dv.ru',
+            page_count => 3,
+            host => '',
+
+            source_list => [
+                {url => '/present/rubric/prodaja-kvartir'},
+                {url => '/present/rubric/komnaty-doli-prodaja'},
+                {url => '/present/rubric/malosemeyki-prodaja'},
+                {url => '/present/rubric/doma-v-habarovske-na-dalnem-vostoke-v-gorodah-rossii'},
+                {url => '/present/rubric/doma-v-habarovske-na-dalnem-vostoke-v-gorodah-rossii'},
+                {url => '/present/rubric/uchastki-prodaja'},
+                {url => '/present/rubric/zdaniya-prodaja'},
+                {url => '/present/rubric/torgovye-ploshchadi-podaja'},
+                {url => '/present/rubric/ofisnye-pomeshcheniya-prodaja'},
+                {url => '/present/rubric/ploshchadi-pod-avtobiznes-prodaja'},
+                {url => '/present/rubric/proizvodstvennye-ploshchadi-sklady-bazy'},
+                {url => '/present/rubric/pomeshcheniya-svobodnogo-naznacheniya-prodaja'},
+
+                {url => '/present/rubric/sdam-kvartiry'},
+                {url => '/present/rubric/komnaty-malosemeyki-sdam'},
+                {url => '/present/rubric/sdam-doma'},
+                {url => '/present/rubric/garaji-arenda'},
+                {url => '/present/rubric/uchastki-sdam'},
+                {url => '/present/rubric/sdam-zdaniya'},
+                {url => '/present/rubric/torgovye-ploshchadi-sdam'},
+                {url => '/present/rubric/ofisnye-pomeshcheniya-sdam'},
+                {url => '/present/rubric/ploshchadi-pod-avtobiznes-prodaja'},
+                {url => '/present/rubric/proizvodstvennoe-pomeshchenie-sdam'},
+                {url => '/present/rubric/pomeshcheniya-svobodnogo-naznacheniya-sdam'},
+                {url => '/present/rubric/sklady-bazy-sdam'}
+            ],
+        }
+     }
+###### - Present_site - end
+#
+# ###### - VNH - start
+#     vnh => {
+#         khv => {
+#             site_url => 'http://vnh27.ru',
+#             host => '',
+#             page_count => 5,
+#             pause => 3,
+#             city => 'Хабаровск',
+#             sort => 3,
+#             limit => 20,
+#             source_list => [{url => 'stub'}]
+#         }
+#     },
+# ###### - VNH - end
+
+}}

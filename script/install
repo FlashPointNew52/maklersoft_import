@@ -1,0 +1,8 @@
+Reading '/home/raven/.cpan/Metadata'
+  Database was generated on Fri, 13 Oct 2017 12:41:02 GMT
+Running install for module 'Image::OCR::Tesseract'
+Checksum for /home/raven/.cpan/sources/authors/id/L/LE/LEOCHARRE/Image-OCR-Tesseract-1.24.tar.gz ok
+'YAML' not installed, will not store persistent state
+Configuring L/LE/LEOCHARRE/Image-OCR-Tesseract-1.24.tar.gz with Makefile.PL
+No 'Makefile' created  LEOCHARRE/Image-OCR-Tesseract-1.24.tar.gz
+  /home/raven/perl5/perlbrew/perls/perl-5.25.5/bin/perl5.25.5 Makefile.PL INSTALLDIRS=site -- NOT OK

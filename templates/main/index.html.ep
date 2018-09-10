@@ -1,0 +1,6 @@
+% layout 'default';
+% title 'RplusImport2';
+<h2>Menu</h2>
+<%= link_to 'errors' => '/errors' %>
+<%= link_to 'active' => '/active' %>
+<%= link_to 'statistics' => '/statistics' %>

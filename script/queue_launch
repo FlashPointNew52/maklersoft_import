@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+screen -d -S queue -m perl minion_queuer.pl -t 1800
+echo queue
+exit 0
