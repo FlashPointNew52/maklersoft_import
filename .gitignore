@@ -5,3 +5,4 @@ log/
 load_list
 endpoints
 python-server/top_secret.py
+python-server/test.py
