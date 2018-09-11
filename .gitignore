@@ -4,3 +4,4 @@ lib/Rplus/DB.pm
 log/
 load_list
 endpoints
+python-server/top_secret.py
