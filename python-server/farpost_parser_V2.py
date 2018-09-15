@@ -12,7 +12,6 @@ class FarpostParser():
 
     def get_html(self, url):
         self.req = requests.get(url)
-        # ДОДЕЛАТЬ
         if self.req.status_code != requests.codes.ok:
             print("Error")
             exit()
