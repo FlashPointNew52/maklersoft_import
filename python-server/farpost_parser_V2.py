@@ -37,6 +37,7 @@ class FarpostParser():
 
         global soup
         global breadcrumbs
+        global info
         soup = BeautifulSoup(html_code, 'lxml').find('body')
 
         breadcrumbs = []
@@ -47,7 +48,7 @@ class FarpostParser():
 
         # pprint(breadcrumbs)
 
-        self.get_info()
+        info = self.get_info()
         data['sourceMedia'] = 'farpost'
         data['sourceUrl'] = url
         data['addDate'] = self.get_date()
@@ -63,7 +64,6 @@ class FarpostParser():
         return data
 
     def get_info(self):
-        global info
         info = {}
         all_info = soup.find_all('div', class_='field viewbull-field__container')
 
@@ -75,6 +75,7 @@ class FarpostParser():
             info[key] = value
 
         # pprint(info)
+        return info
 
     def get_date(self):
         tag_date = soup.find('span', class_='viewbull-header__actuality')
@@ -173,5 +174,6 @@ class FarpostParser():
 
 # if __name__ == '__main__':
 #     farpost_url = "https://www.farpost.ru/khabarovsk/realty/sell_houses/prodam-dom-kottedzh-56559753.html"
-#     X = FarpostParser()
-#     pprint(X.get_data(farpost_url))
+#     local_url = 'http://localhost:9000/get_media_data?url='+farpost_url+'&ip=800.555.35.35'
+#     myreq = requests.get(local_url)
+#     print(myreq.text)

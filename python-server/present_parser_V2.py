@@ -36,13 +36,14 @@ class PresentParser():
 
         global soup
         global breadcrumbs
+        global info
         soup = BeautifulSoup(html_code, 'lxml').find('body')
 
         tag_breadcrumbs = soup.find('div', class_='breadcrumbs')
         breadcrumbs = tag_breadcrumbs.get_text().lower().replace(' ', '').replace('\n', '').split("»")
         # pprint(breadcrumbs)
 
-        self.get_info()
+        info = self.get_info()
         data['sourceMedia'] = 'present'
         data['sourceUrl'] = url
         data['addDate'] = self.get_date()
@@ -58,7 +59,6 @@ class PresentParser():
         return data
 
     def get_info(self):
-        global info
         info = {}
         all_info = soup.find_all('div', class_='notice-card__field word-break')
 
@@ -68,6 +68,7 @@ class PresentParser():
             info[key] = value
 
         # pprint(info)
+        return info
 
     def get_date(self):
         tag_date = soup.find('div', class_='items-bar__group items-bar__group--double-indent')
@@ -228,8 +229,8 @@ class PresentParser():
 
         return phones
 
-
 # if __name__ == '__main__':
-#     present_url = "https://present-dv.ru/present/notice/view/4022576"
-#     data = PresentParser().get_data(present_url)
-#     pprint(data)
+#     present_url = "https://present-dv.ru/present/notice/view/4179250"
+#     local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
+#     myreq = requests.get(local_url)
+#     print(myreq.text)

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
+import json
+import requests
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib import parse
 from pprint import pprint
-import json
-import requests
-import codecs
+
 from present_parser_V2 import PresentParser as PP
 from avito_parser_V2 import AvitoParser as AV
 from farpost_parser_V2 import FarpostParser as FP
