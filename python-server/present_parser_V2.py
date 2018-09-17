@@ -112,17 +112,16 @@ class PresentParser():
             return info['местоположение']
 
     def get_offer_type_code(self):
-        offer_type = breadcrumbs[2]
-
-        return sf.get_OTC(offer_type)
+        if breadcrumbs[4] == 'посуточно':
+            return sf.get_OTC(breadcrumbs[4])
+        else:
+            return sf.get_OTC(breadcrumbs[2])
 
     def get_category_code(self):
-        category = breadcrumbs[3]
-
-        return sf.get_CC(category)
+        return sf.get_CC(breadcrumbs[3])
 
     def get_building_type(self, buildingClass):
-        if breadcrumbs[3] == 'жилая':
+        if breadcrumbs[3] == 'жилая' or breadcrumbs[3] == 'участкиидачи':
             return sf.get_BT(buildingClass)
 
         elif breadcrumbs[3] == 'коммерческая':
@@ -130,9 +129,6 @@ class PresentParser():
                 return sf.get_BT(info['вид объекта'])
             else:
                 return None
-
-        elif breadcrumbs[3] == 'участкиидачи':
-            return sf.get_BT(buildingClass)
 
         else:
             return None
@@ -169,13 +165,17 @@ class PresentParser():
         elif breadcrumbs[3] == 'участкиидачи':
             if breadcrumbs[4] == 'дачи':
                 return sf.get_BC(breadcrumbs[4])
+
             elif breadcrumbs[4] == 'участкикоммерческогоис/хназначения':
-                return sf.get_BC('дача')
+                return sf.get_BC('дачи')
+
             elif breadcrumbs[4] == 'индивидуальноестроительство':
                 if 'дополнительно' in info:
                     pattr = 'ИЖС'
                     if findall(pattr, info['дополнительно']):
                         return sf.get_BC(pattr)
+                    else:
+                        return sf.get_BC('дача')
                 else:
                     return sf.get_BC('дача')
 
@@ -228,6 +228,7 @@ class PresentParser():
             phones.append(str(phone.string))
 
         return phones
+
 
 # if __name__ == '__main__':
 #     present_url = "https://present-dv.ru/present/notice/view/4179250"

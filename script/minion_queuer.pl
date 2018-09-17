@@ -1,5 +1,4 @@
-#!/usr/bin/env perl
-
+print "ppsps";
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 

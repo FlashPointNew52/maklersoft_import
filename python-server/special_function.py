@@ -14,7 +14,10 @@ def get_month(x):
         'декабря': 12,
     }
 
-    return month.get(x.lower(), None)
+    try:
+        return month.get(x.lower(), None)
+    except AttributeError:
+        return None
 
 
 def get_OTC(x):
@@ -27,7 +30,10 @@ def get_OTC(x):
         'квартиры': 'short'
     }
 
-    return offerTypeCode.get(x.lower(), None)
+    try:
+        return offerTypeCode.get(x.lower(), None)
+    except AttributeError:
+        return None
 
 
 def get_CC(x):
@@ -55,7 +61,10 @@ def get_CC(x):
         'дач': 'LAND',
     }
 
-    return categoryCode.get(x.lower(), None)
+    try:
+        return categoryCode.get(x.lower(), None)
+    except AttributeError:
+        return None
 
 
 def get_BT(x):
@@ -80,13 +89,15 @@ def get_BT(x):
         'townhouse': 'lowrise_house',
         'duplex': 'lowrise_house',
 
-        'IZS!!!': 'settlements_land',
-        'dacha': 'agricultural_land',
+        'dacha_land': 'settlements_land',
+        'cultivate_land': 'agricultural_land',
 
         'помещение свободного назначения': 'gpurpose_place',
         'торговое помещение': 'market_place',
+        'торговые площади': 'market_place',
         'производственное помещение': 'production_place',
         'здание': 'other',
+        'здания': 'other',
         'база': 'production_place',
         'складское помещение': 'production_place',
         'офисное помещение': 'office',
@@ -111,7 +122,10 @@ def get_BT(x):
         'industrial_enterprise': 'production_place',
     }
 
-    return buildingType.get(x.lower(), None)
+    try:
+        return buildingType.get(x.lower(), None)
+    except AttributeError:
+        return None
 
 
 def get_BC(x):
@@ -133,15 +147,18 @@ def get_BC(x):
         'дом': 'single_house',
         'дома': 'single_house',
         'коттедж': 'cottage',
-        'дача': 'dacha',
-        'дачи': 'dacha',
-        'ИЖС': 'IZS!!!',
+        'дача': 'cultivate_land',
+        'дачи': 'cultivate_land',
+        'ижс': 'dacha_land',
         'таунхаус': 'townhouse',
         'дуплекс': 'duplex',
         'а+': 'A+'
     }
 
-    return buildingClass.get(x.lower(), None)
+    try:
+        return buildingClass.get(x.lower(), None)
+    except AttributeError:
+        return None
 
 
 def get_TC(x):
@@ -168,4 +185,7 @@ def get_TC(x):
         'офисное помещение': 'office_space'
     }
 
-    return typeCode.get(x.lower(), None)
+    try:
+        return typeCode.get(x.lower(), None)
+    except AttributeError:
+        return None
