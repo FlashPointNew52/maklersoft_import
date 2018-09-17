@@ -234,8 +234,8 @@ class PresentParser():
         return phones
 
 
-if __name__ == '__main__':
-    present_url = "https://present-dv.ru/present/notice/view/4155206"
-    local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
-    myreq = requests.get(local_url)
-    print(myreq.text)
+# if __name__ == '__main__':
+#     present_url = "https://present-dv.ru/present/notice/view/4155206"
+#     local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
+#     myreq = requests.get(local_url)
+#     print(myreq.text)

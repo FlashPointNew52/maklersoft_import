@@ -10,15 +10,15 @@ from datetime import datetime  # пакет для определения вре
 class AvitoParser():
 
     def get_html(self, url):
-        attempt = 1
-        delay_sec = 0.5
-        while attempt <= 10:
+        attempt = 1  # счетчик попыток
+        delay_sec = 0.5  # время задержки (в секундах)
+        while attempt <= 10:  # 10 попыток на подключение
             self.req = requests.get(url)  # GET запрос по заданному url-адресу
-            if self.req.status_code == requests.codes.ok:  # проверка, если код запроса равен 200, возвращаем html код страницы
-                return self.req.text  # код запроса равен 200, возвращаем полученный html код страницы
-            else:
-                attempt += 1
-                sleep(delay_sec)
+            if self.req.status_code == requests.codes.ok:  # проверка, если код запроса равен 200
+                return self.req.text  # возвращаем полученный html код страницы
+            else:  # проверка, если код запроса НЕ равен 200
+                attempt += 1  # +1 попытка
+                sleep(delay_sec)  # задержка
         exit()
 
     def get_data(self, url):
