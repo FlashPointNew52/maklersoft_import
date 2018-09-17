@@ -43,13 +43,22 @@ class Serv(BaseHTTPRequestHandler):
                             }
 
                             if params['source'] == 'present-dv':
-                                data = PP().get_data(params['url'])
+                                try:
+                                    data = PP().get_data(params['url'])
+                                except SystemExit:
+                                    message = "Present-script error!\r\n"
 
                             elif params['source'] == 'avito':
-                                data = AV().get_data(params['url'])
+                                try:
+                                    data = AV().get_data(params['url'])
+                                except SystemExit:
+                                    message = "Avito-script error!\r\n"
 
                             elif params['source'] == 'farpost':
-                                data = FP().get_data(params['url'])
+                                try:
+                                    data = FP().get_data(params['url'])
+                                except SystemExit:
+                                    message = "Farpost-script error!\r\n"
 
                             else:
                                 message = "Params not found!\r\n"

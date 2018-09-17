@@ -1,6 +1,6 @@
 import requests  # пакет для работы с http (запросы и т.п.)
 import special_function as sf  # модуль со всеми необходимыми соотвествиями
-
+from time import sleep
 from bs4 import BeautifulSoup  # пакет для анализа html страниц
 from pprint import pprint  # пакет для "красивого" вывода информации в терминал
 from re import findall  # пакет для работы с регулярными выражениями
@@ -10,13 +10,16 @@ from datetime import datetime  # пакет для определения вре
 class AvitoParser():
 
     def get_html(self, url):
-
-        self.req = requests.get(url)  # GET запрос по заданному url-адресу
-        if self.req.status_code != requests.codes.ok:  # проверка, если код запроса НЕ равен 200, то вывести "Error" и закончить выполнение скрипта
-            print("Error")
-            exit()
-        else:
-            return self.req.text  # код запроса равен 200, возвращаем полученный html код страницы
+        attempt = 1
+        delay_sec = 0.5
+        while attempt <= 10:
+            self.req = requests.get(url)  # GET запрос по заданному url-адресу
+            if self.req.status_code == requests.codes.ok:  # проверка, если код запроса равен 200, возвращаем html код страницы
+                return self.req.text  # код запроса равен 200, возвращаем полученный html код страницы
+            else:
+                attempt += 1
+                sleep(delay_sec)
+        exit()
 
     def get_data(self, url):
         html_code = self.get_html(

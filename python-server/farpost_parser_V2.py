@@ -1,7 +1,7 @@
 import requests
 import special_function as sf
 import top_secret as ts
-
+from time import sleep
 from bs4 import BeautifulSoup
 from pprint import pprint
 from re import findall
@@ -11,12 +11,16 @@ from datetime import datetime
 class FarpostParser():
 
     def get_html(self, url):
-        self.req = requests.get(url)
-        if self.req.status_code != requests.codes.ok:
-            print("Error")
-            exit()
-        else:
-            return self.req.text
+        attempt = 1
+        delay_sec = 0.5
+        while attempt <= 5:
+            self.req = requests.get(url)
+            if self.req.status_code == requests.codes.ok:
+                return self.req.text
+            else:
+                attempt += 1
+                sleep(delay_sec)
+        exit()
 
     def get_data(self, url):
         html_code = self.get_html(url)
