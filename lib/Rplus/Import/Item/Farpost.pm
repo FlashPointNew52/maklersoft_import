@@ -1,56 +1,36 @@
-use warnings;
+package Rplus::Import::Item::Present;
+
+
 use feature 'say';
 
 use Mojo::UserAgent;
 use Data::Dumper;
 
-use JSON;
 use utf8;
 use Encode;
 
-sub decodeJSON {
-    my ($JSONText) = @_;
-    my $hashRef = decode_json(Encode::encode_utf8($JSONText));
-    return $hashRef;
-}
 
-my $ua = Mojo::UserAgent->new;
-my $url = 'https://www.farpost.ru/khabarovsk/realty/sell_flats/komnata-so-vsemi-udobstvami-66194611.html';
-my $ip = '800.555.35.35';
-# say $ua->get('http://localhost:9000/get_media_data?url='.$url.'&ip='.$ip)->res->text;
+use DateTime::Format::Strptime;
+use Mojo::Util qw(trim);
 
-my $data = decodeJSON($ua->get('http://localhost:9000/get_media_data?url='.$url.'&ip='.$ip)->res->text);
+use Rplus::Model::Result;
+use Rplus::Util::Realty qw(save_data_to_all);
+use Rplus::Modern;
+use Rplus::Class::Media;
+use Rplus::Class::Interface;
+use Rplus::Class::UserAgent;
 
-print Dumper($data);
+use JSON;
+use Data::Dumper;
 
-# package Rplus::Import::Item::Farpost;
-#
-# use DateTime::Format::Strptime;
-# use Mojo::Util qw(trim);
-#
-# use Rplus::Model::Result;
-# use Rplus::Util::Realty qw(save_data_to_all);
-# use Rplus::Modern;
-# use Rplus::Class::Media;
-# use Rplus::Class::Interface;
-# use Rplus::Class::UserAgent;
-# use Rplus::Util::2Captcha;
-# use URI::Escape qw(uri_escape uri_escape_utf8);
-#
-# use JSON;
-# use Data::Dumper;
-#
-# use utf8;
-#
-# no warnings 'experimental';
-#
-#
-# my $media_name = 'farpost';
+no warnings 'experimental';
+
 # my $media_data;
-# my $parser = DateTime::Format::Strptime->new(pattern => '%Y-%m-%d %H:%M');
 # my $ua;
+
+# my $media_name = 'farpost';
 # my $ip;
-#
+
 # my $META = {
 #     params => {
 #         dict => {
@@ -136,19 +116,36 @@ print Dumper($data);
 #         },
 #     }
 # };
-#
-#
-# sub get_item {
-#     my ($location, $item_url) = @_;
-#
-#     say 'loading ' . $media_name . ' - ' . $location . ' - ' . $item_url;
-#     my $data = _get_item($location, $item_url);
-#     say Dumper $data;
-#
-#     my $id_it = save_data_to_all($data, $media_name, $location);
-#     say 'save new farpost '.$id_it;
-# }
-#
+
+sub get_item {
+    my ($location, $item_url) = @_;
+    my $media_name = 'farpost';
+    say 'loading ' . $media_name . ' - ' . $location . ' - ' . $item_url;
+    my $data = _get_item($location, $item_url);
+    say Dumper $data;
+
+    my $id_it = save_data_to_all($data, $media_name, $location);
+    say 'save new farpost '.$id_it;
+}
+
+sub _get_item {
+    my ($location, $item_url) = @_;
+    my $ip = Rplus::Class::Interface->instance()->get_interface();
+
+    my $user_agent = Mojo::UserAgent->new;
+    my $data = decodeJSON($user_agent->get('http://localhost:9000/get_media_data?url='.$item_url.'&ip='.$ip)->res->text);
+
+    say Dumper($data);
+
+    return $data;
+}
+
+sub decodeJSON {
+    my ($JSONText) = @_;
+    my $hashRef = decode_json(Encode::encode_utf8($JSONText));
+    return $hashRef;
+}
+
 # sub _get_item {
 #     my ($location, $item_url) = @_;
 #

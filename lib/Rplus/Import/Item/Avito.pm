@@ -1,50 +1,36 @@
-use warnings;
+package Rplus::Import::Item::Present;
+
+
 use feature 'say';
 
 use Mojo::UserAgent;
 use Data::Dumper;
 
-use JSON;
 use utf8;
 use Encode;
 
-sub decodeJSON {
-    my ($JSONText) = @_;
-    my $hashRef = decode_json(Encode::encode_utf8($JSONText));
-    return $hashRef;
-}
 
-my $ua = Mojo::UserAgent->new;
-my $url = 'https://www.avito.ru/habarovsk/kvartiry/4-k_kvartira_75.6_m_69_et._1402464163';
-my $ip = '800.555.35.35';
-# say $ua->get('http://localhost:9000/get_media_data?url='.$url.'&ip='.$ip)->res->text;
+use DateTime::Format::Strptime;
+use Mojo::Util qw(trim);
 
-my $data = decodeJSON($ua->get('http://localhost:9000/get_media_data?url='.$url.'&ip='.$ip)->res->text);
+use Rplus::Model::Result;
+use Rplus::Util::Realty qw(save_data_to_all);
+use Rplus::Modern;
+use Rplus::Class::Media;
+use Rplus::Class::Interface;
+use Rplus::Class::UserAgent;
 
-print Dumper($data);
+use JSON;
+use Data::Dumper;
 
-# package Rplus::Import::Item::Avito;
-#
-# use DateTime::Format::Strptime;
-# use Mojo::Util qw(trim);
-#
-# use Rplus::Model::Result;
-# use Rplus::Util::Realty qw(save_data_to_all);
-# use Mojo::Log;
-# use Rplus::Modern;
-# use Rplus::Class::Media;
-# use Rplus::Class::Interface;
-# use Rplus::Class::UserAgent;
-#
-# use JSON;
-# use Data::Dumper;
-#
-# no warnings 'experimental';
-#
-# my $media_name = 'avito';
+no warnings 'experimental';
+
 # my $media_data;
-# my $parser = DateTime::Format::Strptime->new(pattern => '%Y-%m-%d %H:%M');
 # my $ua;
+
+# my $media_name = 'avito';
+# my $ip;
+
 # my $META = {
 #     params => {
 #         dict => {
@@ -130,17 +116,35 @@ print Dumper($data);
 #         },
 #     }
 # };
-#
-# sub get_item {
-#     my ($location, $item_url) = @_;
-#
-#     say 'loading ' . $media_name . ' - ' . $location . ' - ' . $item_url;
-#     my $data = _get_item($location, $item_url);
-#
-#     my $id_it = save_data_to_all($data, $media_name, $location);
-#     say 'save new avito '.$id_it;
-# }
-#
+
+sub get_item {
+    my ($location, $item_url) = @_;
+    my $media_name = 'avito';
+    say 'loading ' . $media_name . ' - ' . $location . ' - ' . $item_url;
+    my $data = _get_item($location, $item_url);
+
+    my $id_it = save_data_to_all($data, $media_name, $location);
+    say 'save new avito '.$id_it;
+}
+
+sub _get_item {
+    my ($location, $item_url) = @_;
+    my $ip = Rplus::Class::Interface->instance()->get_interface();
+
+    my $user_agent = Mojo::UserAgent->new;
+    my $data = decodeJSON($user_agent->get('http://localhost:9000/get_media_data?url='.$item_url.'&ip='.$ip)->res->text);
+
+    say Dumper($data);
+
+    return $data;
+}
+
+sub decodeJSON {
+    my ($JSONText) = @_;
+    my $hashRef = decode_json(Encode::encode_utf8($JSONText));
+    return $hashRef;
+}
+
 # sub _get_item {
 #     my ($location, $item_url) = @_;
 #
