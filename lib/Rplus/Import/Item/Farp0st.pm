@@ -1,4 +1,4 @@
-package Rplus::Import::Item::Farpost;
+package Rplus::Import::Item::Present;
 
 
 use feature 'say';
@@ -133,9 +133,9 @@ sub _get_item {
     my $ip = Rplus::Class::Interface->instance()->get_interface();
 
     my $user_agent = Mojo::UserAgent->new;
-    my $data = decodeJSON($user_agent->get('http://localhost:9000/get_media_data?url=https://www.farpost.ru'.$item_url.'&ip='.$ip)->res->text);
+    my $data = decodeJSON($user_agent->get('http://localhost:9000/get_media_data?url='.$item_url.'&ip='.$ip)->res->text);
 
-    say Dumper $data;
+    say Dumper($data);
 
     return $data;
 }
@@ -694,4 +694,4 @@ sub decodeJSON {
 # }
 #
 #
-1;
+ 1;

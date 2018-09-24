@@ -1,7 +1,8 @@
 import requests
 import special_function as sf
 import top_secret as ts
-from time import sleep
+import time
+import datetime
 from bs4 import BeautifulSoup
 from pprint import pprint
 from re import findall
@@ -14,29 +15,33 @@ class FarpostParser():
         attempt = 1
         delay_sec = 0.5
         while attempt <= 5:
-            self.req = requests.get(url)
+            self.req = requests.get(url, headers=sf.headers)
             if self.req.status_code == requests.codes.ok:
                 return self.req.text
             else:
                 attempt += 1
-                sleep(delay_sec)
+                time.sleep(delay_sec)
         exit()
 
     def get_data(self, url):
         html_code = self.get_html(url)
 
         data = {
-            'sourceMedia': None,
-            'sourceUrl': None,
-            'addDate': None,
-            'address': None,
-            'offerTypeCode': None,
-            'categoryCode': None,
-            'buildingType': None,
-            'buildingClass': None,
-            'typeCode': None,
+            'id': None,
+            'source_media': None,
+            'source_url': None,
+            'add_date': None,
+            'offer_type_code': None,
+            'type_code': None,
             'phones_import': None,
-            # 'owner_phones': None
+
+            'category_code': None,
+            'building_type': None,
+            'building_class': None,
+            'address': None,
+            'location_lat': None,
+            'location_lon': None,
+            'new_building': False
         }
 
         global soup
@@ -53,15 +58,15 @@ class FarpostParser():
         # pprint(breadcrumbs)
 
         info = self.get_info()
-        data['sourceMedia'] = 'farpost'
-        data['sourceUrl'] = url
-        data['addDate'] = self.get_date()
+        data['source_media'] = 'present'
+        data['source_url'] = url
+        data['add_date'] = self.get_date()
         data['address'] = self.get_address()
-        data['offerTypeCode'] = self.get_offer_type_code()
-        data['categoryCode'] = self.get_category_code()
-        data['buildingClass'] = self.get_building_class()
-        data['buildingType'] = self.get_building_type()
-        data['typeCode'] = self.get_type_code()
+        data['offer_type_code'] = self.get_offer_type_code()
+        data['category_code'] = self.get_category_code()
+        data['building_class'] = self.get_building_class()
+        data['building_type'] = self.get_building_type()
+        data['type_code'] = self.get_type_code()
         data['phones_import'] = self.get_phones()
         # pprint(data)
 
@@ -116,9 +121,11 @@ class FarpostParser():
             date_time['hour'] = dmy[0]
             date_time['minute'] = dmy[1]
 
-        date = "{day}-{month}-{year} {hour}:{minute}:{second}".format(**date_time)
+        date = datetime(int(date_time['year']), int(date_time['month']), int(date_time['day']), int(date_time['hour']), int(date_time['minute']))
 
-        return date
+        unix_date = int(time.mktime(date.timetuple()))
+
+        return unix_date
 
     def get_address(self):
         return info['адрес']
@@ -181,3 +188,6 @@ class FarpostParser():
 #     local_url = 'http://localhost:9000/get_media_data?url='+farpost_url+'&ip=800.555.35.35'
 #     myreq = requests.get(local_url)
 #     print(myreq.text)
+#     X = FarpostParser()
+#     pprint(X.get_data(farpost_url))
+

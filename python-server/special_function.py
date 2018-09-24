@@ -1,3 +1,18 @@
+from user_agent import generate_user_agent
+
+headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+    'cache-control': 'no-cache',
+    'pragma': 'no-cache',
+    'upgrade-insecure-requests': '1',
+    'user-agent': generate_user_agent(device_type="desktop", os=('mac', 'linux'))
+}
+
+proxies = {'http' : 'http://10.10.0.0:0000',
+'https': 'http://120.10.0.0:0000'}
+
 def get_month(x):
     month = {
         'января': 1,
@@ -71,7 +86,7 @@ def get_BT(x):
     buildingType = {
         'elite': 'multisection_house',
         'business': 'multisection_house',
-        'econom': 'multisection_house',
+        'economy': 'multisection_house',
         'improved': 'multisection_house',
         'brezhnev': 'multisection_house',
         'khrushchev': 'multisection_house',
@@ -132,7 +147,7 @@ def get_BC(x):
     buildingClass = {
         'элиткласс': 'elite',
         'бизнескласс': 'business',
-        'экономкласс': 'econom',
+        'экономкласс': 'economy',
         'улучшенная': 'improved',
         'новая': 'improved',
         'брежневка': 'brezhnev',
@@ -152,7 +167,7 @@ def get_BC(x):
         'ижс': 'dacha_land',
         'таунхаус': 'townhouse',
         'дуплекс': 'duplex',
-        'а+': 'A+'
+        'а': 'A'
     }
 
     try:

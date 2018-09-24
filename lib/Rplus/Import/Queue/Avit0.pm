@@ -71,7 +71,7 @@ sub _get_url_list {
                 my $do = $_->find('div[class~="description"]')->first;
                 my $item_url = $do->at('h3 a')->{href};
                 my $item_id = substr $_->{id}, 1;
-                my $date_str = $do->find('div[class="js-item-date c-2"]')->first->all_text;
+                my $date_str = $do->find('div[class="c-2"]')->first->all_text;
 
                 my $ts = _parse_date($date_str);
 
