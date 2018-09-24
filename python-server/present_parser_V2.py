@@ -35,15 +35,16 @@ class PresentParser():
             'add_date': None,
             'offer_type_code': None,
             'type_code': None,
-            'phones_import': None,
-
             'category_code': None,
+            'phones_import': None,
+            'address': None,
+
             'building_type': None,
             'building_class': None,
-            'address': None,
             # 'location_lat': None,
             # 'location_lon': None,
-            'new_building': None
+            'new_building': None,
+            'object_stage': 'ready'
         }
 
         global soup
@@ -63,14 +64,16 @@ class PresentParser():
         data['add_date'] = self.__get_date()
         data['offer_type_code'] = self.__get_offer_type_code()
         data['type_code'] = self.__get_type_code()
+        data['category_code'] = self.__get_category_code()
         data['phones_import'] = self.__get_phones()
+        data['address'] = self.__get_address()
 
         # Обязательные поля, но возможны значения по умолчанию
-        data['category_code'] = self.__get_category_code()
+
         data['building_class'] = self.__get_building_class()
-        data['building_type'] = self.__get_building_type(data['building_class'])
-        data['address'] = self.__get_address()
+        data['building_type'] = self.__get_building_type()
         data['new_building'] = self.__get_type_novelty()
+        # data['object_stage'] = self.__get_object_stage()
 
         # Прочие поля
         self.__get_price()
@@ -82,8 +85,9 @@ class PresentParser():
         self.__get_floor()
         self.__get_square()
         self.__get_condition()
+        self.__get_house_type()
 
-        pprint(data)
+        # pprint(data)
 
         return data
 
@@ -147,6 +151,9 @@ class PresentParser():
         if 'улица/переулок' in info:
             return info['улица/переулок']
 
+        elif 'улица' in info:
+            return info['улица']
+
         elif 'местоположение' in info:
             return info['местоположение']
 
@@ -170,26 +177,29 @@ class PresentParser():
             return False
 
     def __get_offer_type_code(self):
-        if breadcrumbs[4] == 'посуточно':
-            return sf.get_OTC(breadcrumbs[4])
-        else:
+        try:
+            if breadcrumbs[4] == 'посуточно':
+                return sf.get_OTC(breadcrumbs[4])
+            else:
+                return sf.get_OTC(breadcrumbs[2])
+        except IndexError:
             return sf.get_OTC(breadcrumbs[2])
 
     def __get_category_code(self):
         return sf.get_CC(breadcrumbs[3])
 
-    def __get_building_type(self, buildingClass):
-        if breadcrumbs[3] == 'жилая' or breadcrumbs[3] == 'участкиидачи':
-            return sf.get_BT(buildingClass)
+    def __get_building_type(self):
+        if breadcrumbs[3] == 'жилая':
+            return sf.get_BT(data['building_class'])
+
+        elif breadcrumbs[3] == 'участкиидачи':
+            return sf.get_BT('dacha_land')
 
         elif breadcrumbs[3] == 'коммерческая':
             if 'вид объекта' in info:
                 return sf.get_BT(info['вид объекта'])
             else:
-                return None
-
-        else:
-            return None
+                return sf.get_BT('другое')
 
     def __get_building_class(self):
         if breadcrumbs[3] == 'жилая':
@@ -214,22 +224,16 @@ class PresentParser():
                 else:
                     return sf.get_BC('экономкласс')
 
-            else:
-                return None
-
         elif breadcrumbs[3] == 'коммерческая':
             return sf.get_BC('а')
 
         elif breadcrumbs[3] == 'участкиидачи':
             return None
 
-        else:
-            return None
-
     def __get_type_code(self):
         if breadcrumbs[3] == 'жилая':
             if 'количество комнат' in info:
-                if findall('дол', info['количество комнат'].lower()):
+                if findall('дол', info['количество комнат']):
                     return sf.get_TC('доля')
 
             if breadcrumbs[4] == 'малосемейки' or breadcrumbs[4] == 'комнаты':
@@ -239,24 +243,22 @@ class PresentParser():
                 if 'объект продажи' in info:
                     return sf.get_TC(info['объект продажи'])
                 else:
-                    return None
+                    return sf.get_TC('дом')
 
             elif breadcrumbs[4] == 'квартиры':
                 return sf.get_TC(breadcrumbs[4])
 
             elif breadcrumbs[4] == 'комнаты,малосемейки':
                 if 'объект аренды' in info:
-                    return sf.get_BC('комнаты')
+                    return sf.get_TC(info['объект аренды'])
                 else:
-                    return None
+                    return sf.get_TC('комната')
+
         elif breadcrumbs[3] == 'коммерческая':
             pass
 
         elif breadcrumbs[3] == 'участкиидачи':
-            pass
-
-        else:
-            return None
+            return sf.get_TC('дачныйземельныйучасток')
 
     def __get_phones(self):
         phones = []
@@ -272,7 +274,7 @@ class PresentParser():
         if check_tag_price:
             tag_price = check_tag_price.find('div', class_='media-body').find('p')
             price = int(tag_price.get_text().replace(' ', '').replace('\n', '').replace('\xa0', ''))
-            data['price'] = int(price / 1000)
+            data['price'] = float(price / 1000)
 
         else:
             return None
@@ -306,8 +308,11 @@ class PresentParser():
             if findall(pattr, info['балкон/лоджия']):
                 data['loggia'] = True
 
+            if findall('без', info['балкон/лоджия']):
+                data['balcony'] = False
+
         else:
-            return None
+            return False
 
     def __get_source_media_text(self):
         if 'дополнительно' in info:
@@ -321,7 +326,10 @@ class PresentParser():
             try:
                 data['rooms_count'] = int(info['количество комнат'].split(' ')[0])
             except ValueError:
-                return None
+                try:
+                    data['rooms_count'] = int(info['количество комнат'].split('-')[0])
+                except ValueError:
+                    return None
         else:
             return None
 
@@ -337,33 +345,41 @@ class PresentParser():
 
     def __get_square(self):
         if 'площадь общая (кв. м)' in info:
-            data['square_total'] = int(info['площадь общая (кв. м)'])
+            data['square_total'] = float(info['площадь общая (кв. м)'].replace(',','.'))
+        if 'общая площадь (кв. м)' in info:
+            data['square_total'] = float(info['общая площадь (кв. м)'].replace(',','.'))
         if 'площадь жилая (кв. м)' in info:
-            data['square_living'] = int(info['площадь жилая (кв. м)'])
+            data['square_living'] = float(info['площадь жилая (кв. м)'].replace(',','.'))
+        if 'площадь комнаты (кв. м)' in info and data['type_code'] == 'room'or data['type_code'] == 'share':
+            data['square_living'] = float(info['площадь комнаты (кв. м)'].replace(',','.'))
         if 'площадь кухни (кв. м)' in info:
-            data['square_kitchen'] = int(info['площадь кухни (кв. м)'])
+            data['square_kitchen'] = float(info['площадь кухни (кв. м)'].replace(',','.'))
         if 'площадь участка (сотки)' in info:
-            data['square_land'] = int(info['площадь участка (сотки)'])
-        # if 'площадь комнаты (кв. м)' in info:
-        #     data['square_room'] = int(info['площадь участка (сотки)'])
+            data['square_land'] = float(info['площадь участка (сотки)'].replace(',','.'))
+            data['square_land'] = 'ar'
         if 'площадь (сотки)' in info:
-            data['square_land'] = int(info['площадь (сотки)'])
+            data['square_land'] = float(info['площадь (сотки)'].replace(',','.'))
+            data['square_land'] = 'ar'
         else:
             return None
 
     def __get_condition(self):
         if 'состояние' in info:
-            data['condition_id'] = info['состояние']
+            data['condition_id'] = sf.get_condition(info['состояние'])
         else:
             return None
 
+    def __get_house_type(self):
+        if 'материал стен' in info:
+            data['house_type'] = sf.get_house_type(info['материал стен'])
 
-if __name__ == '__main__':
-    present_url = "https://present-dv.ru/present/notice/view/4155206"
+
+# if __name__ == '__main__':
+#     present_url = "https://present-dv.ru/present/notice/view/4117034"
     # present_url = 'https://present-dv.ru/present/notice/view/4177623'
     # present_url = 'https://present-dv.ru/present/notice/view/4183842'
     # local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
     # myreq = requests.get(local_url)
     # print(myreq.text)
-    X = PresentParser()
-    X.get_data(present_url)
+    # X = PresentParser()
+    # X.get_data(present_url)

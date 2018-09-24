@@ -10,9 +10,6 @@ headers = {
     'user-agent': generate_user_agent(device_type="desktop", os=('mac', 'linux'))
 }
 
-proxies = {'http' : 'http://10.10.0.0:0000',
-'https': 'http://120.10.0.0:0000'}
-
 def get_month(x):
     month = {
         'января': 1,
@@ -99,13 +96,15 @@ def get_BT(x):
 
         'individual': 'galary_house',
 
-        'single_house': 'lowrise_house',
+        'house': 'lowrise_house',
         'cottage': 'lowrise_house',
         'townhouse': 'lowrise_house',
         'duplex': 'lowrise_house',
 
-        'dacha_land': 'settlements_land',
-        'cultivate_land': 'agricultural_land',
+
+
+        'dacha_land': 'agricultural_land',
+
 
         'помещение свободного назначения': 'gpurpose_place',
         'торговое помещение': 'market_place',
@@ -135,6 +134,7 @@ def get_BT(x):
         'manufacture_building': 'production_place',
         'warehouse_space': 'production_place',
         'industrial_enterprise': 'production_place',
+        'other': 'production_place',
     }
 
     try:
@@ -149,25 +149,35 @@ def get_BC(x):
         'бизнескласс': 'business',
         'экономкласс': 'economy',
         'улучшенная': 'improved',
+        'улучшенная планировка': 'improved',
         'новая': 'improved',
         'брежневка': 'brezhnev',
         'хрущевка': 'khrushchev',
         'сталинка': 'stalin',
         'старыйфонд': 'old_fund',
+
         'малосемейки': 'small_apartm',
         'малосемейка': 'small_apartm',
         'общежитие': 'dormitory',
         'гостинка': 'gostinka',
+
         'индивидуальная': 'individual',
-        'дом': 'single_house',
-        'дома': 'single_house',
-        'коттедж': 'cottage',
-        'дача': 'cultivate_land',
-        'дачи': 'cultivate_land',
-        'ижс': 'dacha_land',
+        'индивидуальная планировка': 'individual',
+
         'таунхаус': 'townhouse',
         'дуплекс': 'duplex',
-        'а': 'A'
+
+        'коттедж': 'cottage',
+        'дом': 'house',
+
+
+        'а': 'A',
+        'а+': 'A+',
+        'b': 'B',
+        'b+': 'B+',
+        'c': 'C',
+        'c+': 'C+'
+
     }
 
     try:
@@ -181,26 +191,139 @@ def get_TC(x):
         'доля': 'share',
         'комната': 'room',
         'комнаты': 'room',
+        'комната в квартире': 'room',
+        'малосемейка': 'room',
         'квартира': 'apartment',
         'квартиры': 'apartment',
         'дом': 'house',
         'коттедж': 'cottage',
-        'дача': 'dacha',
-        'дачи': 'dacha',
         'таунхаус': 'townhouse',
         'дуплекс': 'duplex',
+
+
         'дачныйземельныйучасток': 'dacha_land',
+        'садовыйземельныйучасток': 'garden_land',
+        'огородныйземельныйучасток': 'cultivate_land',
 
-        'помещение свободного назначения': 'gpurpose_place',
+
+        'отель' : 'hotel',
+        'ресторан': 'restaurant',
+        'кафе': 'cafe',
+        'спортивный зал': 'sport_building',
+        'спортивное сооружение': 'sport_building',
+        'магазин': 'shop',
         'торговое помещение': 'shop',
+        'торговый центр': 'shop_center',
+        'тогово-развлекательный центр': 'shop_entertainment',
+        'кабинет': 'cabinet',
+        'офисное помещение': 'office_space',
+        'офисное здание': 'office_building',
+        'бизнес-центр': 'business_center',
+        'бизнес центр': 'business_center',
         'производственное помещение': 'manufacture_building',
-        'здание': 'other',
-        'база': 'manufacture_building',
         'складское помещение': 'warehouse_space',
-        'офисное помещение': 'office_space'
-    }
+        'промышленное предприятие': 'industrial_enterprice',
+        'другое': 'other',
 
+        # 'помещение свободного назначения': 'gpurpose_place',
+        # 'помещение под сферу услуг': 'other',
+        # 'здание': 'other',
+        # 'база': 'warehouse_space',
+
+
+    }
     try:
         return typeCode.get(x.lower(), None)
     except AttributeError:
         return None
+
+
+def get_condition(x):
+    condition = {
+        'хорошее': 2,
+        'отличное': 2,
+        'удовлетворительное': 2,
+        'после строителей': 6,
+        'соцремонт': 1,
+        'сделан ремонт': 2,
+        'после ремонта': 2,
+        'евроремонт': 7,
+        'дизайнерский ремонт': 3,
+        'требуется ремонт': 4,
+        'требуется капитальный ремонт': 4,
+        'требуется косметический ремонт': 4,
+        'ветхий': 4
+    }
+
+    try:
+        return condition.get(x.lower(), None)
+    except AttributeError:
+        return None
+
+
+def get_bathroom(x):
+    bathroom = {
+        'нет': 'no',
+        'раздельный санузел': 'splited',
+        'совмещенный санузел': 'combined',
+        # 'в доме': 'combined',
+        # 'на улице': 'no'
+    }
+
+    try:
+        return bathroom.get(x.lower(), None)
+    except AttributeError:
+        return None
+
+
+def get_house_type(x):
+    house_type = {
+        'панельный': 1,
+        'деревянный': 2,
+        'дерево': 2,
+        'шлакоблочный': 3,
+        'кирпичный': 4,
+        'кирпич': 4,
+        # 'каркасный' : '???',
+        'блочный': 3,
+        'монолитный': 5,
+        'монолитный бетон': 5,
+        'монолитно-кирпичный': 6,
+    }
+
+    try:
+        return house_type.get(x.lower(), None)
+    except AttributeError:
+        return None
+
+
+def get_room_scheme(x):
+    room_scheme = {
+        'свободная планировка': 1,
+        'смежные': 5,
+        'раздельные': 3,
+        'смежно-раздельные': 4,
+        'студия': 6,
+        'другое': 2,
+    }
+
+    try:
+        return room_scheme.get(x.lower(), 'other')
+    except AttributeError:
+        return 'other'
+
+
+def get_object_stage(x):
+    object_stage = {
+        'в стадии проекта': 'project',
+        'строящийся объект': 'building',
+        'сданный объект': 'ready'
+    }
+
+    try:
+        return object_stage.get(x.lower(), 'ready')
+    except AttributeError:
+        return 'ready'
+
+
+

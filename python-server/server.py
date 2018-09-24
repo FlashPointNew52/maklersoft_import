@@ -4,7 +4,7 @@ import requests
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib import parse
 from pprint import pprint
-
+from time import sleep
 from present_parser_V2 import PresentParser as PP
 from avito_parser_V2 import AvitoParser as AV
 from farpost_parser_V2 import FarpostParser as FP
@@ -44,7 +44,9 @@ class Serv(BaseHTTPRequestHandler):
 
                             if params['source'] == 'present-dv':
                                 try:
+                                    # sleep(0.05)
                                     data = PP().get_data(params['url'])
+                                    # sleep(0.05)
                                 except SystemExit:
                                     message = "Present-script error!\r\n"
 
@@ -76,7 +78,9 @@ class Serv(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-type", "application/json; charset=utf-8")
                 self.end_headers()
+                pprint(data)
                 self.wfile.write(json.dumps(data, ensure_ascii=False).encode())
+
 
             else:
                 self.send_response(404)
@@ -87,7 +91,7 @@ class Serv(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     HOST = 'localhost'
-    PORT = 9000
+    PORT = 8080
     print('Run server: http://{0}:{1}'.format(HOST, PORT))
     httpd = HTTPServer((HOST, PORT), Serv)
     httpd.serve_forever()
