@@ -1,4 +1,4 @@
-package Rplus::Import::Item::Present;
+package Rplus::Import::Item::Avito;
 
 
 use feature 'say';
@@ -122,6 +122,7 @@ sub get_item {
     my $media_name = 'avito';
     say 'loading ' . $media_name . ' - ' . $location . ' - ' . $item_url;
     my $data = _get_item($location, $item_url);
+    say Dumper $data;
 
     my $id_it = save_data_to_all($data, $media_name, $location);
     say 'save new avito '.$id_it;
@@ -132,9 +133,9 @@ sub _get_item {
     my $ip = Rplus::Class::Interface->instance()->get_interface();
 
     my $user_agent = Mojo::UserAgent->new;
-    my $data = decodeJSON($user_agent->get('http://localhost:9000/get_media_data?url='.$item_url.'&ip='.$ip)->res->text);
+    my $data = decodeJSON($user_agent->get('http://localhost:9000/get_media_data?url=https://www.avito.ru'.$item_url.'&ip='.$ip)->res->text);
 
-    say Dumper($data);
+    say Dumper $data;
 
     return $data;
 }
@@ -588,4 +589,4 @@ sub decodeJSON {
 #     return 0;
 # }
 #
-# 1;
+1;
