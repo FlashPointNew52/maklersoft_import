@@ -28,6 +28,25 @@ class PresentParser():
         html_code = self.__get_html(url)
 
         global data
+        # data = {
+        #     'id': None,
+        #     'source_media': 'present',
+        #     'source_url': None,
+        #     'add_date': 1537872600,
+        #     'offer_type_code': 'sale',
+        #     'type_code': 'other',
+        #     'category_code': 'commersial',
+        #     'phones_import': None,
+        #     'address': 'Хабаровская 12',
+        #
+        #     'building_type': 'other',
+        #     'building_class': 'other',
+        #     # 'location_lat': None,
+        #     # 'location_lon': None,
+        #     'new_building': False,
+        #     'object_stage': 'ready'
+        # }
+
         data = {
             'id': None,
             'source_media': None,
@@ -88,7 +107,6 @@ class PresentParser():
         self.__get_house_type()
 
         # pprint(data)
-
         return data
 
     def __get_info(self):
@@ -100,12 +118,12 @@ class PresentParser():
             value = unit.span.get_text().replace('\r', ' ').replace('\n', ' ')
             info[key] = value
 
-        # pprint(info)
         return info
 
     def __get_id(self):
         date_create = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour,
                                datetime.now().minute, datetime.now().second)
+
         unix_id = int(time.mktime(date_create.timetuple()))
 
         return unix_id
@@ -345,20 +363,20 @@ class PresentParser():
 
     def __get_square(self):
         if 'площадь общая (кв. м)' in info:
-            data['square_total'] = float(info['площадь общая (кв. м)'].replace(',','.'))
+            data['square_total'] = float(info['площадь общая (кв. м)'].replace(',', '.'))
         if 'общая площадь (кв. м)' in info:
-            data['square_total'] = float(info['общая площадь (кв. м)'].replace(',','.'))
+            data['square_total'] = float(info['общая площадь (кв. м)'].replace(',', '.'))
         if 'площадь жилая (кв. м)' in info:
-            data['square_living'] = float(info['площадь жилая (кв. м)'].replace(',','.'))
-        if 'площадь комнаты (кв. м)' in info and data['type_code'] == 'room'or data['type_code'] == 'share':
-            data['square_living'] = float(info['площадь комнаты (кв. м)'].replace(',','.'))
+            data['square_living'] = float(info['площадь жилая (кв. м)'].replace(',', '.'))
+        if 'площадь комнаты (кв. м)' in info and data['type_code'] == 'room' or data['type_code'] == 'share':
+            data['square_living'] = float(info['площадь комнаты (кв. м)'].replace(',', '.'))
         if 'площадь кухни (кв. м)' in info:
-            data['square_kitchen'] = float(info['площадь кухни (кв. м)'].replace(',','.'))
+            data['square_kitchen'] = float(info['площадь кухни (кв. м)'].replace(',', '.'))
         if 'площадь участка (сотки)' in info:
-            data['square_land'] = float(info['площадь участка (сотки)'].replace(',','.'))
+            data['square_land'] = float(info['площадь участка (сотки)'].replace(',', '.'))
             data['square_land'] = 'ar'
         if 'площадь (сотки)' in info:
-            data['square_land'] = float(info['площадь (сотки)'].replace(',','.'))
+            data['square_land'] = float(info['площадь (сотки)'].replace(',', '.'))
             data['square_land'] = 'ar'
         else:
             return None
@@ -373,13 +391,12 @@ class PresentParser():
         if 'материал стен' in info:
             data['house_type'] = sf.get_house_type(info['материал стен'])
 
-
 # if __name__ == '__main__':
-#     present_url = "https://present-dv.ru/present/notice/view/4117034"
-    # present_url = 'https://present-dv.ru/present/notice/view/4177623'
-    # present_url = 'https://present-dv.ru/present/notice/view/4183842'
-    # local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
-    # myreq = requests.get(local_url)
-    # print(myreq.text)
-    # X = PresentParser()
-    # X.get_data(present_url)
+#     present_url = "https://present-dv.ru/present/notice/view/3876096"
+#     # present_url = 'https://present-dv.ru/present/notice/view/4177623'
+#     # present_url = 'https://present-dv.ru/present/notice/view/4183842'
+#     # local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
+#     # myreq = requests.get(local_url)
+#     # print(myreq.text)
+#     X = PresentParser()
+#     pprint(X.get_data(present_url))

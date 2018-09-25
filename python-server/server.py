@@ -22,6 +22,7 @@ class Serv(BaseHTTPRequestHandler):
         else:
             path = self.path.split('?')[0]
             if path == '/get_media_data':
+
                 params_size = len(self.path.split('?'))
 
                 if params_size == 2 and self.path.split('?')[1] != '':
@@ -44,9 +45,7 @@ class Serv(BaseHTTPRequestHandler):
 
                             if params['source'] == 'present-dv':
                                 try:
-                                    # sleep(0.05)
                                     data = PP().get_data(params['url'])
-                                    # sleep(0.05)
                                 except SystemExit:
                                     message = "Present-script error!\r\n"
 
@@ -78,7 +77,7 @@ class Serv(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-type", "application/json; charset=utf-8")
                 self.end_headers()
-                pprint(data)
+                # pprint(data)
                 self.wfile.write(json.dumps(data, ensure_ascii=False).encode())
 
 
@@ -86,7 +85,7 @@ class Serv(BaseHTTPRequestHandler):
                 self.send_response(404)
                 self.send_header("Content-type", "text/html; charset=utf-8")
                 self.end_headers()
-                self.wfile.write(bytes(message, "utf8"))
+                # self.wfile.write(bytes(message, "utf8"))
 
 
 if __name__ == '__main__':
