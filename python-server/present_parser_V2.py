@@ -28,24 +28,6 @@ class PresentParser():
         html_code = self.__get_html(url)
 
         global data
-        # data = {
-        #     'id': None,
-        #     'source_media': 'present',
-        #     'source_url': None,
-        #     'add_date': 1537872600,
-        #     'offer_type_code': 'sale',
-        #     'type_code': 'other',
-        #     'category_code': 'commersial',
-        #     'phones_import': None,
-        #     'address': 'Хабаровская 12',
-        #
-        #     'building_type': 'other',
-        #     'building_class': 'other',
-        #     # 'location_lat': None,
-        #     # 'location_lon': None,
-        #     'new_building': False,
-        #     'object_stage': 'ready'
-        # }
 
         data = {
             'id': None,
@@ -75,7 +57,6 @@ class PresentParser():
         breadcrumbs = tag_breadcrumbs.get_text().lower().replace(' ', '').replace('\n', '').split("»")
 
         info = self.__get_info()
-        # pprint(info)
         # Обязательные поля
         data['id'] = self.__get_id()
         data['source_media'] = 'present'
@@ -106,7 +87,6 @@ class PresentParser():
         self.__get_condition()
         self.__get_house_type()
 
-        # pprint(data)
         return data
 
     def __get_info(self):
@@ -213,11 +193,16 @@ class PresentParser():
         elif breadcrumbs[3] == 'участкиидачи':
             return sf.get_BT('dacha_land')
 
-        elif breadcrumbs[3] == 'коммерческая':
+        elif breadcrumbs[3] == 'коммерческая' or breadcrumbs[3] == 'гаражи':
             if 'вид объекта' in info:
-                return sf.get_BT(info['вид объекта'])
+                if sf.get_BT(data['type_code']):
+                    return sf.get_BT(data['type_code'])
+                else:
+                    data['type_code'] = 'other'
+                    return sf.get_BT('other')
             else:
-                return sf.get_BT('другое')
+                data['type_code'] = 'other'
+                return sf.get_BT('other')
 
     def __get_building_class(self):
         if breadcrumbs[3] == 'жилая':
@@ -242,7 +227,7 @@ class PresentParser():
                 else:
                     return sf.get_BC('экономкласс')
 
-        elif breadcrumbs[3] == 'коммерческая':
+        elif breadcrumbs[3] == 'коммерческая' or breadcrumbs[3] == 'гаражи':
             return sf.get_BC('а')
 
         elif breadcrumbs[3] == 'участкиидачи':
@@ -272,20 +257,40 @@ class PresentParser():
                 else:
                     return sf.get_TC('комната')
 
+        elif breadcrumbs[2] == 'сдам' and breadcrumbs[3] == 'коммерческая':
+            data['type_code'] = sf.get_TC(breadcrumbs[4])
+            if 'вид объекта' in info:
+                if sf.get_TC(info['вид объекта']):
+                    return sf.get_TC(info['вид объекта'])
+                else:
+                    return data['type_code']
+
         elif breadcrumbs[3] == 'коммерческая':
-            pass
+            if 'вид объекта' in info:
+                if sf.get_TC(info['вид объекта']):
+
+                    return sf.get_TC(info['вид объекта'])
+                else:
+                    return sf.get_TC('другое')
 
         elif breadcrumbs[3] == 'участкиидачи':
             return sf.get_TC('дачныйземельныйучасток')
 
+        elif breadcrumbs[3] == 'гаражи':
+            return sf.get_TC('другое')
+
     def __get_phones(self):
         phones = []
-        tag_numbers = soup.find('div', class_='media text-125').find('div', class_='media-body').find_all('a')
 
-        for phone in tag_numbers:
-            phones.append(str(phone.string))
+        try:
+            tag_numbers = soup.find('div', class_='media text-125').find('div', class_='media-body').find_all('a')
 
-        return phones
+            for phone in tag_numbers:
+                phones.append(str(phone.string))
+
+            return phones
+        except AttributeError:
+            exit()
 
     def __get_price(self):
         check_tag_price = soup.find('div', class_='notice-card__financial-fields media')
@@ -392,11 +397,11 @@ class PresentParser():
             data['house_type'] = sf.get_house_type(info['материал стен'])
 
 # if __name__ == '__main__':
-#     present_url = "https://present-dv.ru/present/notice/view/3876096"
-#     # present_url = 'https://present-dv.ru/present/notice/view/4177623'
-#     # present_url = 'https://present-dv.ru/present/notice/view/4183842'
-#     # local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
-#     # myreq = requests.get(local_url)
-#     # print(myreq.text)
+#     present_url = "https://present-dv.ru/present/notice/view/4177349"
+# #     # present_url = 'https://present-dv.ru/present/notice/view/4177623'
+# #     # present_url = 'https://present-dv.ru/present/notice/view/4183842'
+# #     # local_url = 'http://localhost:9000/get_media_data?url='+present_url+'&ip=800.555.35.35'
+# #     # myreq = requests.get(local_url)
+# #     # print(myreq.text)
 #     X = PresentParser()
 #     pprint(X.get_data(present_url))

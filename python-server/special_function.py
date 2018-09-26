@@ -53,6 +53,7 @@ def get_CC(x):
         'жилая': 'REZIDENTIAL',
         'коммерческая': 'COMMERSIAL',
         'участкиидачи': 'LAND',
+        'гаражи': 'COMMERSIAL',
 
         'квартиры': 'REZIDENTIAL',
         'посуточная аренда квартир': 'REZIDENTIAL',
@@ -105,16 +106,6 @@ def get_BT(x):
 
         'dacha_land': 'agricultural_land',
 
-
-        'помещение свободного назначения': 'gpurpose_place',
-        'торговое помещение': 'market_place',
-        'торговые площади': 'market_place',
-        'производственное помещение': 'production_place',
-        'здание': 'other',
-        'здания': 'other',
-        'база': 'production_place',
-        'складское помещение': 'production_place',
-        'офисное помещение': 'office',
 
 
         'hotel': 'gpurpose_place',
@@ -222,14 +213,22 @@ def get_TC(x):
         'бизнес центр': 'business_center',
         'производственное помещение': 'manufacture_building',
         'складское помещение': 'warehouse_space',
+        'склад': 'warehouse_space',
+        'база': 'warehouse_space',
         'промышленное предприятие': 'industrial_enterprice',
         'другое': 'other',
+        'здание': 'other',
+        'производственные помещения': 'manufacture_building',
+        'офисные помещения': 'office_space',
 
-        # 'помещение свободного назначения': 'gpurpose_place',
-        # 'помещение под сферу услуг': 'other',
-        # 'здание': 'other',
-        # 'база': 'warehouse_space',
-
+        'здания': 'other',
+        'помещенияподавтобизнес': 'other',
+        'торговыеплощади': 'shop_center',
+        'склады,базы': 'warehouse_space',
+        'офисныепомещения': 'office_space',
+        'помещенияподсферууслуг': 'other',
+        'помещениясвободногоназначения': 'other',
+        'производственныепомещения': 'manufacture_building',
 
     }
     try:
