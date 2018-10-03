@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from sys import argv
 import json
 import requests
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -8,6 +9,7 @@ from time import sleep
 from present_parser_V2 import PresentParser as PP
 from avito_parser_V2 import AvitoParser as AV
 from farpost_parser_V2 import FarpostParser as FP
+
 
 
 class Serv(BaseHTTPRequestHandler):
@@ -45,19 +47,19 @@ class Serv(BaseHTTPRequestHandler):
 
                             if params['source'] == 'present-dv':
                                 try:
-                                    data = PP().get_data(params['url'])
+                                    data = PP().get_data(params)
                                 except SystemExit:
                                     message = "Present-script error!\r\n"
 
                             elif params['source'] == 'avito':
                                 try:
-                                    data = AV().get_data(params['url'])
+                                    data = AV().get_data(params)
                                 except SystemExit:
                                     message = "Avito-script error!\r\n"
 
                             elif params['source'] == 'farpost':
                                 try:
-                                    data = FP().get_data(params['url'])
+                                    data = FP().get_data(params)
                                 except SystemExit:
                                     message = "Farpost-script error!\r\n"
 
@@ -90,7 +92,7 @@ class Serv(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     HOST = 'localhost'
-    PORT = 8080
+    PORT = 9000
     print('Run server: http://{0}:{1}'.format(HOST, PORT))
     httpd = HTTPServer((HOST, PORT), Serv)
     httpd.serve_forever()

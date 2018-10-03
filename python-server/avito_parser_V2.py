@@ -1,20 +1,27 @@
 import requests  # пакет для работы с http (запросы и т.п.)
 import special_function as sf  # модуль со всеми необходимыми соотвествиями
+import top_secret as ts
 import time
 import datetime
+from datetime import timedelta
 from bs4 import BeautifulSoup  # пакет для анализа html страниц
 from pprint import pprint  # пакет для "красивого" вывода информации в терминал
 from re import findall  # пакет для работы с регулярными выражениями
 from datetime import datetime  # пакет для определения времени
 
 
+
 class AvitoParser():
 
-    def __get_html(self, url):
+    def __get_html(self, params):
+        source = params['source']
+        url = params['url']
+        ip = params['ip']
+
         attempt = 1  # счетчик попыток
         delay_sec = 0.5  # время задержки (в секундах)
         while attempt <= 10:  # 10 попыток на подключение
-            self.req = requests.get(url, headers=sf.headers, timeout=5)  # GET запрос по заданному url-адресу
+            self.req = requests.get(url, headers=sf.headers, cookies=ts.cook_for_ip(source, ip))  # GET запрос по заданному url-адресу
             if self.req.status_code == requests.codes.ok:  # проверка, если код запроса равен 200
                 return self.req.text  # возвращаем полученный html код страницы
             else:  # проверка, если код запроса НЕ равен 200
@@ -22,9 +29,10 @@ class AvitoParser():
                 time.sleep(delay_sec)  # задержка
         exit()
 
-    def get_data(self, url):
-        html_code = self.__get_html(
-            url)  # вызов функции get_html(функция для получения html кода) с параметром в виде url-адреса
+    def get_data(self, parameters):
+        url = parameters['url']
+
+        html_code = self.__get_html(parameters)  # вызов функции get_html(функция для получения html кода) с параметром в виде url-адреса
         # pprint(html_code)
         data = {
             'id': None,
@@ -65,7 +73,7 @@ class AvitoParser():
         data['add_date'] = self.__get_date()
         data['offer_type_code'] = self.__get_offer_type_code()
         # data['type_code'] = self.__get_type_code()
-        data['phones_import'] = self.__get_phones(url)
+        data['phones_import'] = self.__get_phones(parameters)
 
         # Обязательные поля, но возможны значения по умолчанию
         data['category_code'] = self.__get_category_code()
@@ -88,8 +96,10 @@ class AvitoParser():
         return data
 
     def __get_id(self):
-        date_create = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour,
-                               datetime.now().minute, datetime.now().second)
+        now_date = datetime.today()
+        date_create = datetime(now_date.year, now_date.month, now_date.day, now_date.hour,
+                               now_date.minute, now_date.second)
+
         unix_id = int(time.mktime(date_create.timetuple()))
 
         return unix_id
@@ -112,12 +122,11 @@ class AvitoParser():
     def __get_date(self):
         tag_date = soup.find('div',
                              class_='title-info-metadata-item')  # поиск одной записи с тегом <div> и определенным классом
+
         # pprint(tag_date)
-        info_date = tag_date.get_text().replace('\n', '').replace('размещено',
-                                                                  '')  # редактируем запись, избавляясь от лишних символов/слов
+        info_date = tag_date.get_text().replace('\n', '').replace('размещено','')  # редактируем запись, избавляясь от лишних символов/слов
         # pprint(info_date)
-        dmy = findall(r'\w+',
-                      info_date)  # используя регулярное выражение получаем список [номер объявления, когда размещена, 'в', часы, минуты]
+        dmy = findall(r'\w+',info_date)  # используя регулярное выражение получаем список [номер объявления, когда размещена, 'в', часы, минуты]
 
         date_time = {
             'day': None,
@@ -128,48 +137,53 @@ class AvitoParser():
             'second': '00'
         }  # сформирован словарь
 
+        now_date = datetime.today()
+
+        if dmy[3] == '1970':
+            exit()
+
         # разбираем дату и записываем необходимую информацию в словарь
         if dmy[1] == 'вчера':
-            date_time['day'] = datetime.now().day - 1
-            date_time['month'] = datetime.now().month
-            date_time['year'] = datetime.now().year
+            date_time['day'] = (now_date - timedelta(1)).day
+            date_time['month'] = (now_date - timedelta(1)).month
+            date_time['year'] = (now_date - timedelta(1)).year
             date_time['hour'] = dmy[3]
             date_time['minute'] = dmy[4]
 
         elif dmy[1] == 'сегодня':
-            date_time['day'] = datetime.now().day
-            date_time['month'] = datetime.now().month
-            date_time['year'] = datetime.now().year
+            date_time['day'] = now_date.day
+            date_time['month'] = now_date.month
+            date_time['year'] = now_date.year
             date_time['hour'] = dmy[3]
             date_time['minute'] = dmy[4]
 
         else:
             date_time['day'] = dmy[1]
             date_time['month'] = sf.get_month(dmy[2])
-            date_time['year'] = datetime.now().year
+            date_time['year'] = now_date.year
             date_time['hour'] = dmy[4]
             date_time['minute'] = dmy[5]
 
-        # date = "{day}-{month}-{year} {hour}:{minute}:{second}".format(**date_time)  # формируем дату в "красивый" вид DD-MM-YY HH:MM:SS
-        date = datetime(int(date_time['year']), int(date_time['month']), int(date_time['day']), int(date_time['hour']),
-                        int(date_time['minute']))
-
+        date = datetime(int(date_time['year']), int(date_time['month']), int(date_time['day']), int(date_time['hour']), int(date_time['minute']))
         unix_date = int(time.mktime(date.timetuple()))
 
         return unix_date
 
     def __get_address(self):
-        tag_address = soup.find('span',
-                                itemprop='streetAddress')  # поиск одной записи с тегом <span> и определенным классом
-        address = tag_address.get_text().replace('\n', '')  # редактируем запись, избавляясь от лишних символов/слов
-
-        return address
+        tag_address = soup.find('div', class_='seller-info-label', string='Адрес').find_next("div")  # поиск одной записи с тегом <div>, определенным классом и строкой Адрес
+        if tag_address:
+            address = tag_address.get_text().replace('\n', '')  # редактируем запись, избавляясь от лишних символов/слов
+            return address
+        else:
+            return None
 
     def __get_offer_type_code(self):
         # определение типа предложения с помощью "хлебных крошек"
-        if breadcrumbs[
-            5] == 'посуточно':  # если 6-й элемент списка содержит слово 'посуточно' => offer_type_code = short
-            offer_type = breadcrumbs[5]
+        if len(breadcrumbs) >= 6:
+            if breadcrumbs[5] == 'посуточно':  # если 6-й элемент списка содержит слово 'посуточно' => offer_type_code = short
+                offer_type = breadcrumbs[5]
+            else:  # иначе offer_type_code равен 4-му элементу списка (продам/сдам)
+                offer_type = breadcrumbs[3]
         else:  # иначе offer_type_code равен 4-му элементу списка (продам/сдам)
             offer_type = breadcrumbs[3]
 
@@ -196,12 +210,11 @@ class AvitoParser():
         # написать реализацию функции
         return None
 
-    def __get_phones(self, url):
-        avito_mobile = url.replace('www', 'm')  # изменяем url с "компьютерной" версии, на мобильную версию
-
+    def __get_phones(self, params):
+        params['url'] = params['url'].replace('www', 'm')  # изменяем url с "компьютерной" версии, на мобильную версию
         tag_numbers = None
         while tag_numbers is None:  # "крутить" цикл, пока не поймана запись с заданным атрибутом
-            mobile_html_code = self.__get_html(avito_mobile)  # получение html кода мобильной версии сайта
+            mobile_html_code = self.__get_html(params)  # получение html кода мобильной версии сайта
             mobile_soup = BeautifulSoup(mobile_html_code, 'lxml')  # создание "дерева кода" для анализа страницы
             tag_numbers = mobile_soup.find(
                 attrs={'data-marker': 'item-contact-bar/call'})  # поиск записи с определенным аттрибутом
@@ -213,10 +226,10 @@ class AvitoParser():
         return phones
 
 
-if __name__ == '__main__':  # НАЧАЛО ТУТ)
-    avito_url = "https://www.avito.ru/habarovsk/kvartiry/3-k_kvartira_58_m_55_et._1519616533"  # необходимый url-адрес
-    # local_url = 'http://localhost:9000/get_media_data?url=' + avito_url + '&ip=800.555.35.35'  # сформированная строка запроса к локальному серверу
-    # myreq = requests.get(local_url)  # GET запрос к локальному серверу
-    # print(myreq.text)  # вывод полученного ответа от сервера
-    X = AvitoParser()
-    pprint(X.get_data(avito_url))
+# if __name__ == '__main__':  # НАЧАЛО ТУТ)
+#     avito_url = "https://www.avito.ru/habarovsk/zemelnye_uchastki/uchastok_30_sot._promnaznacheniya_833223976"  # необходимый url-адрес
+#     # local_url = 'http://localhost:9000/get_media_data?url=' + avito_url + '&ip=800.555.35.35'  # сформированная строка запроса к локальному серверу
+#     # myreq = requests.get(local_url)  # GET запрос к локальному серверу
+#     # print(myreq.text)  # вывод полученного ответа от сервера
+#     X = AvitoParser()
+#     pprint(X.get_data(params))
