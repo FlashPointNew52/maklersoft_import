@@ -65,23 +65,26 @@ class AvitoParser():
             breadcrumbs.append(i.get_text().lower())  # внесение каждой "крошки" в список
 
         info = self.__get_info()
-        # pprint(info)
+        pprint(breadcrumbs)
+        pprint(info)
         # Обязательные поля
         data['id'] = self.__get_id()
-        data['source_media'] = 'present'
+        data['source_media'] = 'avito'
         data['source_url'] = url
         data['add_date'] = self.__get_date()
         data['offer_type_code'] = self.__get_offer_type_code()
         # data['type_code'] = self.__get_type_code()
+        data['category_code'] = self.__get_category_code()
         data['phones_import'] = self.__get_phones(parameters)
+        data['address'] = self.__get_address()
 
         # Обязательные поля, но возможны значения по умолчанию
-        data['category_code'] = self.__get_category_code()
+
         # data['building_class'] = self.__get_building_class()
         # data['building_type'] = self.__get_building_type(data['building_class'])
-        data['address'] = self.__get_address()
         # data['new_building'] = self.__get_type_novelty()
-        #
+        # data['object_stage'] = self.__get_object_stage()
+
         # # Прочие поля
         # self.__get_price()
         # self.__get_photo_url()
@@ -92,6 +95,7 @@ class AvitoParser():
         # self.__get_floor()
         # self.__get_square()
         # self.__get_condition()
+        # self.__get_house_type()
 
         return data
 
@@ -179,12 +183,12 @@ class AvitoParser():
 
     def __get_offer_type_code(self):
         # определение типа предложения с помощью "хлебных крошек"
-        if len(breadcrumbs) >= 6:
-            if breadcrumbs[5] == 'посуточно':  # если 6-й элемент списка содержит слово 'посуточно' => offer_type_code = short
-                offer_type = breadcrumbs[5]
+        try:
+            if breadcrumbs[4] == 'посуточно' or breadcrumbs[5] == 'посуточно':  # если 6-й элемент списка содержит слово 'посуточно' => offer_type_code = short
+                offer_type = 'посуточно'
             else:  # иначе offer_type_code равен 4-му элементу списка (продам/сдам)
                 offer_type = breadcrumbs[3]
-        else:  # иначе offer_type_code равен 4-му элементу списка (продам/сдам)
+        except IndexError:
             offer_type = breadcrumbs[3]
 
         return sf.get_OTC(offer_type)
@@ -207,8 +211,17 @@ class AvitoParser():
         return None
 
     def __get_type_code(self):
-        # написать реализацию функции
-        return None
+        if breadcrumbs[2] == 'комнаты':
+            return sf.get_TC(breadcrumbs[2])
+        elif breadcrumbs[2] == 'квартиры':
+            return sf.get_TC(breadcrumbs[2])
+        elif breadcrumbs[2] == 'дома, дачи, коттеджи':
+            return sf.get_TC(breadcrumbs[4])
+        elif breadcrumbs[2] == 'коммерческая недвижимость':
+            return sf.get_TC(breadcrumbs[4])
+        elif breadcrumbs[2] == 'земельные участки':
+            return sf.get_TC('дачныйземельныйучасток')
+
 
     def __get_phones(self, params):
         params['url'] = params['url'].replace('www', 'm')  # изменяем url с "компьютерной" версии, на мобильную версию
@@ -226,10 +239,15 @@ class AvitoParser():
         return phones
 
 
-# if __name__ == '__main__':  # НАЧАЛО ТУТ)
-#     avito_url = "https://www.avito.ru/habarovsk/zemelnye_uchastki/uchastok_30_sot._promnaznacheniya_833223976"  # необходимый url-адрес
-#     # local_url = 'http://localhost:9000/get_media_data?url=' + avito_url + '&ip=800.555.35.35'  # сформированная строка запроса к локальному серверу
-#     # myreq = requests.get(local_url)  # GET запрос к локальному серверу
-#     # print(myreq.text)  # вывод полученного ответа от сервера
-#     X = AvitoParser()
-#     pprint(X.get_data(params))
+if __name__ == '__main__':  # НАЧАЛО ТУТ)
+    avito_url = "https://www.avito.ru/habarovsk/kommercheskaya_nedvizhimost/pomeschenie_svobodnogo_naznacheniya_144_m_1425890832"  # необходимый url-адрес
+    # local_url = 'http://localhost:9000/get_media_data?url=' + avito_url + '&ip=800.555.35.35'  # сформированная строка запроса к локальному серверу
+    # myreq = requests.get(local_url)  # GET запрос к локальному серверу
+    # print(myreq.text)  # вывод полученного ответа от сервера
+    X = AvitoParser()
+    params = {
+            'source': 'avito',
+            'url': avito_url,
+            'ip': '193.124.180.185'
+    }
+    pprint(X.get_data(params))

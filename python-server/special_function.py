@@ -8,6 +8,7 @@ headers = {
     'pragma': 'no-cache',
     'upgrade-insecure-requests': '1',
     'user-agent': generate_user_agent(device_type="desktop", os=('mac', 'linux'))
+
 }
 
 def get_month(x):
@@ -183,23 +184,31 @@ def get_TC(x):
         'комната': 'room',
         'комнаты': 'room',
         'комната в квартире': 'room',
+        'комната в общежитии': 'room',
+        'комната в малосемейке': 'room',
+        'комнаты,малосемейки': 'room',
         'малосемейка': 'room',
         'квартира': 'apartment',
         'квартиры': 'apartment',
         'дом': 'house',
+        'дома': 'house',
         'коттедж': 'cottage',
+        'коттеджи': 'cottage',
         'таунхаус': 'townhouse',
+        'таунхаусы': 'townhouse',
         'дуплекс': 'duplex',
 
-
+        'дачи': 'dacha_land',
         'дачныйземельныйучасток': 'dacha_land',
         'садовыйземельныйучасток': 'garden_land',
         'огородныйземельныйучасток': 'cultivate_land',
 
 
         'отель' : 'hotel',
+        'гостиница': 'hotel',
         'ресторан': 'restaurant',
         'кафе': 'cafe',
+        # 'помещение общественного питания': 'cafe???',
         'спортивный зал': 'sport_building',
         'спортивное сооружение': 'sport_building',
         'магазин': 'shop',
@@ -228,8 +237,8 @@ def get_TC(x):
         'офисныепомещения': 'office_space',
         'помещенияподсферууслуг': 'other',
         'помещениясвободногоназначения': 'other',
+        'помещение свободного назначения': 'other',
         'производственныепомещения': 'manufacture_building',
-
     }
     try:
         return typeCode.get(x.lower(), None)
